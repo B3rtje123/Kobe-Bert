@@ -1,0 +1,31 @@
+{
+  "name": "kobe-bert",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "todo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/B3rtje123/Kobe-Bert.git"
+  },
+  "author": "Bert & Kobe",
+  "bugs": {
+    "url": "https://github.com/B3rtje123/Kobe-Bert/issues"
+  },
+  "homepage": "https://github.com/B3rtje123/Kobe-Bert#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "proseWrap": "preserve",
+    "htmlWhitespaceSensitivity": "css",
+    "endOfLine": "lf"
+  }
+}
