@@ -4,21 +4,24 @@
 
 ### general
 
-- [] auth
-  - [] login
-  - [] forgot password
-- [] 404 page
+- [x] auth
+  - [x] login
+  - [x] forgot password
+  - [x] register (clients only)
+- [x] 404 page
 
 ### personeel (admin)
 
-- [] personeel
-- [] shops
-- [] restaurant
-- [] atracties
+- [x] personeel
+- [x] shops
+- [x] restaurant
+- [x] atracties
 
 ### bezoekers
 
-- [] tickets bestellen
-- [] eten bestellen
-- [] FAQ
-- [] helpdesk (chatbot?)
+- [x] tickets bestellen
+- [ ] tickets bekijken (met QR code)(als men is ingelogd)
+- [x] eten bestellen
+- [ ] bestellingen bekijken (met qr code)(als men is ingelogd)
+- [x] FAQ
+- [x] helpdesk (chatbot?)
