@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="handleLogin">
+    {{ firebaseUser }}
     <div class="container">
       <label for="uname"><b>email</b></label>
       <input
