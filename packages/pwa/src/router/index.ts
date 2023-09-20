@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 
+import useFirebase from "@/composables/useFirebase"
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,35 +37,43 @@ const router = createRouter({
       path: "/attractie",
       name: "attractie",
       component: () => import("../views/admin/attractie.vue"),
+      meta: { shouldBeAuthenticated: true },
     },
     {
       path: "/personeel",
       name: "personeel",
       component: () => import("../views/admin/personeel.vue"),
+      meta: { shouldBeAuthenticated: true },
     },
     {
       path: "/restaurant",
       name: "restaurant",
       component: () => import("../views/admin/restaurant.vue"),
+      meta: { shouldBeAuthenticated: true },
     },
     {
       path: "/shop",
       name: "shop",
       component: () => import("../views/admin/shop.vue"),
+      meta: { shouldBeAuthenticated: true },
     },
     //authentification
     {
-      path: "/login",
+      path: "/auth",
+      component: () => import("../components/wrappers/AuthWrap.vue"),
+    },
+    {
+      path: "/auth/login",
       name: "login",
       component: () => import("../views/auth/login.vue"),
     },
     {
-      path: "/register",
+      path: "/auth/register",
       name: "register",
       component: () => import("../views/auth/register.vue"),
     },
     {
-      path: "/forgot-password",
+      path: "/auth/forgot-password",
       name: "forgotPassword",
       component: () => import("../views/auth/forgotPassword.vue"),
     },
@@ -74,6 +84,17 @@ const router = createRouter({
       component: () => import("../views/404Page.vue"),
     },
   ],
+})
+
+router.beforeEach(async (to, from, next) => {
+  const { firebaseUser } = useFirebase()
+
+  if (to.meta.shouldBeAuthenticated && !firebaseUser.value) {
+    console.log("HACKER")
+    next({ path: "/auth/login" })
+  } else {
+    next()
+  }
 })
 
 export default router
