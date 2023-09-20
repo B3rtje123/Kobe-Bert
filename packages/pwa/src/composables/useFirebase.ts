@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { initializeApp } from "firebase/app"
 import {
   browserLocalPersistence,
+  createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   setPersistence,
@@ -10,6 +11,9 @@ import {
   signOut,
   type User,
 } from "firebase/auth"
+import { resolve } from "path"
+import { rejects } from "assert"
+import { error } from "console"
 
 const app = initializeApp({
   apiKey: import.meta.env.VITE_apiKey,
@@ -29,6 +33,19 @@ const firebaseUser = ref<User | null>(auth.currentUser)
 const login = async (email: string, password: string): Promise<User> => {
   return new Promise((resolve, rejects) => {
     signInWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        firebaseUser.value = userCredential.user
+        resolve(userCredential.user)
+      })
+      .catch(error => {
+        rejects(error)
+      })
+  })
+}
+
+const register = async (email: string, password: string): Promise<User> => {
+  return new Promise((resolve, rejects) => {
+    createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         firebaseUser.value = userCredential.user
         resolve(userCredential.user)
