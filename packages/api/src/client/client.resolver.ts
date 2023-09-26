@@ -22,9 +22,7 @@ export class ClientResolver {
         id: "jfksdqjf44s4",
         name: "Dave",
         fullname: "Dave de duif",
-        active: true,
         createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]
   }
