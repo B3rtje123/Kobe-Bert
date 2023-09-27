@@ -15,21 +15,19 @@ export class ClientResolver {
     return this.clientService.create(createClientInput)
   }
 
-  @Query(() => [Client], { name: "clients" })
+  @Query(() => [Client], { name: "getClientsPlaceholder" })
   getClients() {
     return [
       {
         id: "jfksdqjf44s4",
         name: "Dave",
         fullname: "Dave de duif",
-        active: true,
         createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]
   }
 
-  @Query(() => [Client], { name: "client" })
+  @Query(() => [Client], { name: "getAllClients" })
   findAll() {
     return this.clientService.findAll()
   }
