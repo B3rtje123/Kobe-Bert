@@ -8,6 +8,6 @@ export class CreateClientInput {
   @Field()
   fullname: string
 
-  @Field()
-  createdAt: Date
+  // @Field()
+  // createdAt: Date
 }
