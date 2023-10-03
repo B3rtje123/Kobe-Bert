@@ -1,2 +1,3 @@
 **/node_modules/
 packages/api/credentials.json
+packages\api\.env
