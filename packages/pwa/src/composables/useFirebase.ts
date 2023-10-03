@@ -11,6 +11,9 @@ import {
   signOut,
   type User,
 } from "firebase/auth"
+import { resolve } from "path"
+import { rejects } from "assert"
+import { error } from "console"
 
 const app = initializeApp({
   apiKey: import.meta.env.VITE_apiKey,
