@@ -4,11 +4,15 @@ import { AppService } from "./app.service"
 import { GraphQLModule } from "@nestjs/graphql"
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo"
 import { ClientModule } from "./client/client.module"
-import { StaffModule } from './staff/staff.module';
+import { StaffModule } from "./staff/staff.module"
 import { TypeOrmModule } from "@nestjs/typeorm"
+import { AuthenticationModule } from "./authentication/authentication.module"
+import { ConfigModule } from "@nestjs/config"
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
+
     TypeOrmModule.forRoot({
       type: "mongodb",
       url: "mongodb://localhost:27028/api",
@@ -23,6 +27,7 @@ import { TypeOrmModule } from "@nestjs/typeorm"
     }),
     ClientModule,
     StaffModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
