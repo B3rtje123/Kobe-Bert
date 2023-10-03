@@ -13,10 +13,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FirebaseAuthStrategy = exports.StrategyName = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
-const passport_2 = require("passport");
+const passport_http_bearer_1 = require("passport-http-bearer");
 const firebase_service_1 = require("./service/firebase.service");
 exports.StrategyName = "firebase-auth";
-let FirebaseAuthStrategy = exports.FirebaseAuthStrategy = FirebaseAuthStrategy_1 = class FirebaseAuthStrategy extends (0, passport_1.PassportStrategy)(passport_2.Strategy, exports.StrategyName) {
+let FirebaseAuthStrategy = exports.FirebaseAuthStrategy = FirebaseAuthStrategy_1 = class FirebaseAuthStrategy extends (0, passport_1.PassportStrategy)(passport_http_bearer_1.Strategy, exports.StrategyName) {
     constructor(firebase) {
         super();
         this.firebase = firebase;
