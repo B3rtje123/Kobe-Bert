@@ -3,6 +3,10 @@ import { ClientService } from "./client.service"
 import { Client } from "./entities/client.entity"
 import { CreateClientInput } from "./dto/create-client.input"
 import { UpdateClientInput } from "./dto/update-client.input"
+import { FirebaseUser } from "../authentication/decorators/user.decorator"
+import { FireBaseGuard } from "src/authentication/service/guards/firebase.guard"
+import { UserRecord } from "firebase-admin/auth"
+import { UseGuards } from "@nestjs/common"
 
 @Resolver(() => Client)
 export class ClientResolver {
@@ -27,8 +31,9 @@ export class ClientResolver {
     ]
   }
 
+  @UseGuards(FireBaseGuard)
   @Query(() => [Client], { name: "getAllClients" })
-  findAll() {
+  findAll(@FirebaseUser() currentUser: UserRecord) {
     return this.clientService.findAll()
   }
 
