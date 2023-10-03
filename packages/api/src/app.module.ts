@@ -8,6 +8,7 @@ import { StaffModule } from "./staff/staff.module"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { AuthenticationModule } from "./authentication/authentication.module"
 import { ConfigModule } from "@nestjs/config"
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ConfigModule } from "@nestjs/config"
     ClientModule,
     StaffModule,
     AuthenticationModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

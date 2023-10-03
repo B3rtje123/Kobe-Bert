@@ -35,4 +35,13 @@ export class ClientService {
   remove(id: number) {
     return `This action removes a #${id} client`
   }
+
+  //function for seeding
+  saveAll(clients: Client[]) {
+    return this.clientRepository.save(clients)
+  }
+
+  truncate() {
+    return this.clientRepository.clear()
+  }
 }
