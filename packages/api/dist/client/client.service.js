@@ -39,6 +39,12 @@ let ClientService = exports.ClientService = class ClientService {
     remove(id) {
         return `This action removes a #${id} client`;
     }
+    saveAll(clients) {
+        return this.clientRepository.save(clients);
+    }
+    truncate() {
+        return this.clientRepository.clear();
+    }
 };
 exports.ClientService = ClientService = __decorate([
     (0, common_1.Injectable)(),

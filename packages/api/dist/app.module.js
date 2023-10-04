@@ -17,6 +17,8 @@ const staff_module_1 = require("./staff/staff.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const authentication_module_1 = require("./authentication/authentication.module");
 const config_1 = require("@nestjs/config");
+const seed_module_1 = require("./seed/seed.module");
+const ticket_module_1 = require("./ticket/ticket.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -38,6 +40,8 @@ exports.AppModule = AppModule = __decorate([
             client_module_1.ClientModule,
             staff_module_1.StaffModule,
             authentication_module_1.AuthenticationModule,
+            seed_module_1.SeedModule,
+            ticket_module_1.TicketModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
