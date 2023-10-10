@@ -1,4 +1,10 @@
 <template>
+  <select name="language" id="language" @change="setLanguage" :value="locale">
+    <option v-for="(value, key) in SUPPORTED_LOCALES" :value="key">
+      {{ value }}
+    </option>
+  </select>
+
   <form @submit.prevent="handleLogin">
     {{ firebaseUser }}
     <div class="container">
@@ -30,31 +36,32 @@
   </form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from "vue"
 import useFirebase from "@/composables/useFirebase"
+import { SUPPORTED_LOCALES } from "@/bootstrap/i18n"
+import useLanguage from "@/composables/useLanguage"
+import { useI18n } from "vue-i18n"
 
-export default {
-  setup() {
-    //Composables
-    const { login, firebaseUser } = useFirebase()
+const { setLocale } = useLanguage()
+const { locale } = useI18n()
 
-    //logic
+//Composables
+const { login, firebaseUser } = useFirebase()
 
-    const loginCredentials = ref({
-      email: "kobe.despeghel@student.howest.be",
-      password: "",
-    })
+//logic
 
-    const handleLogin = () => {
-      login(loginCredentials.value.email, loginCredentials.value.password)
-    }
+const setLanguage = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  setLocale(target.value)
+}
 
-    return {
-      loginCredentials,
-      handleLogin,
-      firebaseUser,
-    }
-  },
+const loginCredentials = ref({
+  email: "kobe.despeghel@student.howest.be",
+  password: "",
+})
+
+const handleLogin = () => {
+  login(loginCredentials.value.email, loginCredentials.value.password)
 }
 </script>

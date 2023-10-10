@@ -8,6 +8,7 @@ import AppFooter from "./components/generic/AppFooter.vue"
 import AppHeader from "./components/generic/AppHeader.vue"
 
 import useLanguage from "./composables/useLanguage"
+import { useI18n } from "vue-i18n"
 
 export default {
   components: {
@@ -17,9 +18,11 @@ export default {
 
   setup() {
     const { apolloClient } = useGraphql()
-    const { locale } = useLanguage()
+    const { setLocale } = useLanguage()
+    const { locale } = useI18n()
 
     provide(DefaultApolloClient, apolloClient)
+    setLocale(locale.value)
 
     return {
       locale,
