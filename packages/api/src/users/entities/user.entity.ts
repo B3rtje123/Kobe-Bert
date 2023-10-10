@@ -33,6 +33,48 @@ export class User {
   @Field()
   locale?: String
 
+  @Column()
+  @Field()
+  name: string
+
+  @Column()
+  @Field()
+  fullname: string
+
+  @Column()
+  @Field()
+  email: string
+
+  @Column()
+  @Field()
+  phoneNumber: string
+
+  @Column()
+  @Field({ nullable: true })
+  brutoMonthlyWage?: string
+
+  @Column()
+  @Field({ nullable: true })
+  isChief?: string
+
+  @Column()
+  @Field({ nullable: true })
+  workDays?: []
+
+  @Column()
+  @Field({ nullable: true })
+  leave?: []
+
+  @Column()
+  @Field({ nullable: true })
+  job?: string
+
+  @Field(() => Location, { nullable: true })
+  workLocation?: Location
+
+  @Column()
+  workLocationId?: string
+
   @CreateDateColumn({ type: "timestamp", nullable: true })
   @Field()
   createdAt: Date
