@@ -1,27 +1,27 @@
 import { Injectable } from "@nestjs/common"
-import { ClientService } from "src/client/client.service"
-import { Client } from "../client/entities/client.entity"
 
 import * as clients from "./data/clients.json"
+import { UsersService } from "src/users/users.service"
+import { User } from "src/users/entities/user.entity"
 
 @Injectable()
 export class SeedService {
-  constructor(private clientService: ClientService) {}
+  constructor(private usersService: UsersService) {}
 
-  async addClientsFromJson(): Promise<Client[]> {
-    let theClients: Client[] = []
+  async addClientsFromJson(): Promise<User[]> {
+    let theClients: User[] = []
     for (let client of clients) {
-      const c = new Client()
+      const c = new User()
       c.name = client.name
       c.fullname = client.fullname
 
       theClients.push(c)
     }
 
-    return this.clientService.saveAll(theClients)
+    return this.usersService.saveAll(theClients)
   }
 
   async deleteAllClients(): Promise<void> {
-    return this.clientService.truncate()
+    return this.usersService.truncate()
   }
 }

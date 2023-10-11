@@ -3,8 +3,6 @@ import { AppController } from "./app.controller"
 import { AppService } from "./app.service"
 import { GraphQLModule } from "@nestjs/graphql"
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo"
-import { ClientModule } from "./client/client.module"
-import { StaffModule } from "./staff/staff.module"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { AuthenticationModule } from "./authentication/authentication.module"
 import { ConfigModule } from "@nestjs/config"
@@ -27,8 +25,6 @@ import { UsersModule } from './users/users.module';
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
-    ClientModule,
-    StaffModule,
     AuthenticationModule,
     SeedModule,
     UsersModule,
