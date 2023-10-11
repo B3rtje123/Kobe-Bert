@@ -39,4 +39,12 @@ export class UsersService {
   remove(id: string) {
     return new Error(`This action removes a #${id} user`)
   }
+  //function for seeding
+  saveAll(users: User[]) {
+    return this.userRepository.save(users)
+  }
+
+  truncate() {
+    return this.userRepository.clear()
+  }
 }

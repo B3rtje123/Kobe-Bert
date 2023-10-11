@@ -57,20 +57,20 @@ export class User {
   @Field({ nullable: true })
   isChief?: string
 
-  @Column()
-  @Field({ nullable: true })
-  workDays?: []
+  // @Column()
+  // @Field({ nullable: true })
+  // workDays?: []
 
-  @Column()
-  @Field({ nullable: true })
-  leave?: []
+  // @Column()
+  // @Field({ nullable: true })
+  // leave?: []
 
   @Column()
   @Field({ nullable: true })
   job?: string
 
-  @Field(() => Location, { nullable: true })
-  workLocation?: Location
+  // @Field(() => Location, { nullable: true })
+  // workLocation?: Location
 
   @Column()
   workLocationId?: string
