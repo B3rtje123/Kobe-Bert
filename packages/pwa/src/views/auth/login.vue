@@ -1,4 +1,11 @@
 <template>
+  <h1>
+    {{ $t("account.welcome", { user: firebaseUser?.email }) }}
+  </h1>
+  <h2>
+    {{ $t("account.settings") }}
+  </h2>
+
   <select name="language" id="language" @change="setLanguage" :value="locale">
     <option v-for="(value, key) in SUPPORTED_LOCALES" :value="key">
       {{ value }}
