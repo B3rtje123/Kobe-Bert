@@ -10,4 +10,6 @@ export declare class ClientService {
     findOne(id: number): string;
     update(id: number, updateClientInput: UpdateClientInput): string;
     remove(id: number): string;
+    saveAll(clients: Client[]): Promise<Client[]>;
+    truncate(): Promise<void>;
 }
