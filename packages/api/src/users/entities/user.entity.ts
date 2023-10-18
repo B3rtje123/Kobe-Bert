@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID } from "@nestjs/graphql"
+import { WorkHours } from "src/interfaces/workHours.interface"
 import {
   Column,
   CreateDateColumn,
@@ -25,50 +26,53 @@ export class User {
   @Field()
   uid: string
 
-  @Column({ default: Role.USER })
-  @Field(() => String)
-  role: Role
-
-  @Column()
-  @Field()
-  locale?: String
-
   @Column()
   @Field()
   name: string
 
   @Column()
   @Field()
+  email: string
+
+  @Column({ default: Role.USER })
+  @Field(() => String, { nullable: true })
+  role: Role
+
+  @Column()
+  @Field({ nullable: true })
+  locale?: string
+
+  @Column()
+  @Field({ nullable: true })
   fullname: string
 
   @Column()
-  @Field()
-  email: string
-
-  @Column()
-  @Field()
+  @Field({ nullable: true })
   phoneNumber: string
 
   @Column()
   @Field({ nullable: true })
-  brutoMonthlyWage?: string
+  brutoMonthlyWage?: number
 
   @Column()
   @Field({ nullable: true })
-  isChief?: string
+  isChief?: boolean
 
+  //TODO: add workhours
   // @Column()
   // @Field({ nullable: true })
-  // workDays?: []
+  // workHours?: WorkHours
 
-  // @Column()
+  //TODO: add leave
+  // @Column("datetime", { array: true })
   // @Field({ nullable: true })
-  // leave?: []
+  // leave?: Date[] //startdate & enddate
 
   @Column()
   @Field({ nullable: true })
   job?: string
 
+  //TODO: add location entity
   // @Field(() => Location, { nullable: true })
   // workLocation?: Location
 
