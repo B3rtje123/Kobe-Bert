@@ -1,7 +1,7 @@
 import { InputType, Int, Field } from "@nestjs/graphql"
 import { IsNotEmpty } from "class-validator"
 import { Role } from "../entities/user.entity"
-import { WorkHours } from "src/interfaces/workHours.interface"
+import { WorkHours } from "../../interfaces/workHours.interface"
 
 @InputType()
 export class CreateUserInput {

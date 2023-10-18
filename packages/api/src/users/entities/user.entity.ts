@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from "@nestjs/graphql"
-import { WorkHours } from "src/interfaces/workHours.interface"
+import { WorkHours } from "../../interfaces/workHours.interface"
 import {
   Column,
   CreateDateColumn,

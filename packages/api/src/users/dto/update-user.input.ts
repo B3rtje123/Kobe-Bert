@@ -2,7 +2,7 @@ import { IsNotEmpty } from "class-validator"
 import { Role } from "../entities/user.entity"
 import { CreateUserInput } from "./create-user.input"
 import { InputType, Field, Int, PartialType } from "@nestjs/graphql"
-import { WorkHours } from "src/interfaces/workHours.interface"
+import { WorkHours } from "../../interfaces/workHours.interface"
 
 @InputType()
 export class UpdateUserInput extends PartialType(CreateUserInput) {
