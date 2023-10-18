@@ -9,6 +9,7 @@ import { FirebaseUser } from "src/authentication/decorators/user.decorator"
 import { UserRecord } from "firebase-admin/auth"
 import { RolesGuard } from "./guards/roles.guards"
 import { AllowedRoles } from "./decorators/role.decorator"
+import { query } from "express"
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -23,16 +24,21 @@ export class UsersResolver {
     return this.usersService.create(user.uid, createUserInput)
   }
 
-  @AllowedRoles(Role.ADMIN)
+  @AllowedRoles(Role.ADMIN, Role.STAFF)
   @UseGuards(FireBaseGuard, RolesGuard)
-  @Query(() => [User], { name: "users" })
+  @Query(() => [User], { name: "getAllUsers" })
   findAll() {
     return this.usersService.findAll()
   }
 
-  @Query(() => User, { name: "user" })
-  findOne(@Args("string", { type: () => String }) id: string) {
-    return this.usersService.findOne(id)
+  // @Query(() => User, { name: "getUserById" })
+  // findOne(@Args("string", { type: () => String }) id: string) {
+  //   return this.usersService.findOneById(id)
+  // }
+
+  @Query(() => User, { name: "getUserByUid" })
+  findOneByUid(@Args("string", { type: () => String }) id: string) {
+    return this.usersService.findOneByUid(id)
   }
 
   @Mutation(() => User)
