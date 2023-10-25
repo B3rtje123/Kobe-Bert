@@ -3,10 +3,12 @@ import { User } from "src/users/entities/user.entity"
 import {
   Column,
   CreateDateColumn,
+  Entity,
   ObjectIdColumn,
   UpdateDateColumn,
 } from "typeorm"
 
+//TODO: make into entity
 export enum TicketType {
   STANDARD = "STANDARD",
   KIDS = "KIDS",
@@ -17,6 +19,7 @@ export enum TicketType {
 }
 
 @ObjectType()
+@Entity()
 export class Ticket {
   @ObjectIdColumn()
   @Field(() => ID)
@@ -24,43 +27,35 @@ export class Ticket {
 
   @Column()
   @Field()
-  url: string
+  barcode: string //code-128 format: TYP YYMMDD XXXX (type, startday, id)
 
   @Column()
-  @Field()
+  @Field(() => String)
   type: TicketType
 
-  @Column()
+  @Column({ type: "date" })
   @Field()
   startDay: Date
 
-  @Column()
+  @Column({ type: "date", nullable: true })
   @Field()
   endDay: Date
 
-  @Column()
+  @Column({ default: false })
   @Field()
   isUsed: boolean
 
-  @Column()
-  @Field()
-  isSoldOut: boolean
-
-  @Column()
-  @Field()
-  price: number
-
-  @Column()
+  @Column({ nullable: true })
   clientId: string
 
-  @Field()
+  @Field(() => User)
   client: User
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "timestamp", nullable: true })
   @Field()
   createdAt: Date
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "timestamp", nullable: true })
   @Field()
   updatedAt: Date
 }
