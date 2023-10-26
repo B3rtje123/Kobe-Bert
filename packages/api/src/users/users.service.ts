@@ -12,12 +12,12 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  create(uid: string, createUserInput: CreateUserInput) {
+  create(uid: string, email: string, createUserInput: CreateUserInput) {
     const user = new User()
     //req
     user.uid = uid
     user.name = createUserInput.name
-    user.email = createUserInput.email
+    user.email = email
 
     //opt
     user.role = createUserInput.role ?? Role.USER
@@ -65,7 +65,7 @@ export class UsersService {
     //update user
     user.uid = id
     user.name = updateUserInput.name ?? user.name
-    user.email = updateUserInput.email ?? user.email
+    // user.email = updateUserInput.email ?? user.email
     user.role = updateUserInput.role ?? user.role
     user.locale = updateUserInput.locale ?? user.locale
     user.fullname = updateUserInput.fullname ?? user.fullname
