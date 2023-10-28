@@ -21,9 +21,10 @@ export class UsersResolver {
     @Args("createUserInput") createUserInput: CreateUserInput,
     @FirebaseUser() user: UserRecord,
   ) {
-    return this.usersService.create(user.uid, createUserInput)
+    return this.usersService.create(user.uid, user.email, createUserInput)
   }
 
+  //only admin and staff can get all users
   @AllowedRoles(Role.ADMIN, Role.STAFF)
   @UseGuards(FireBaseGuard, RolesGuard)
   @Query(() => [User], { name: "getAllUsers" })

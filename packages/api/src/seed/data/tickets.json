@@ -1,0 +1,52 @@
+[
+    {
+        "type": "GROUP",
+        "startDay": "2024-07-01",
+        "endDay": "2024-07-01"
+    },
+    {
+        "type": "STUDENT",
+        "startDay": "2023-04-10",
+        "endDay": "2023-04-10"
+    },
+    {
+        "type": "KIDS",
+        "startDay": "2023-11-09",
+        "endDay": "2023-11-09"
+    },
+    {
+        "type": "KIDS",
+        "startDay": "2023-03-30",
+        "endDay": "2023-03-30"
+    },
+    {
+        "type": "STUDENT",
+        "startDay": "2023-02-03",
+        "endDay": "2023-02-03"
+    },
+    {
+        "type": "YEARPASS",
+        "startDay": "2024-05-11",
+        "endDay": "2025-05-10"
+    },
+    {
+        "type": "STUDENT",
+        "startDay": "2022-11-23",
+        "endDay": "2022-11-23"
+    },
+    {
+        "type": "KIDS",
+        "startDay": "2024-01-20",
+        "endDay": "2024-01-20"
+    },
+    {
+        "type": "KIDS",
+        "startDay": "2023-04-22",
+        "endDay": "2023-04-22"
+    },
+    {
+        "type": "STANDARD",
+        "startDay": "2022-11-25",
+        "endDay": "2022-11-25"
+    }
+]

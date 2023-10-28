@@ -1,7 +1,7 @@
 import { InputType, Int, Field } from "@nestjs/graphql"
 import { IsNotEmpty } from "class-validator"
 import { Role } from "../entities/user.entity"
-import { WorkHours } from "src/interfaces/workHours.interface"
+import { WorkHours } from "../../interfaces/workHours.interface"
 
 @InputType()
 export class CreateUserInput {
@@ -9,13 +9,12 @@ export class CreateUserInput {
   @Field(() => String, { description: "name of the current user" })
   name: string
 
-  @IsNotEmpty()
-  @Field(() => String, { description: "email of the current user" })
-  email: string
+  // @IsNotEmpty()
+  // @Field(() => String, { description: "email of the current user" })
+  // email: string
 
   @Field(() => String, {
     description: "role of the current user",
-    nullable: true,
   })
   role: Role
 
