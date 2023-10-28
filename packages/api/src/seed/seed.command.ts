@@ -7,22 +7,22 @@ export class DatabaseSeedCommand {
   constructor(private readonly seedService: SeedService) {}
 
   @Command({
-    command: "seed:database:clients",
-    describe: "Seed the database with clients",
+    command: "seed:database:tickets",
+    describe: "Seed the database with tickets",
   })
-  async seedBirds() {
-    console.info("🪺 Start seeding of clients")
-    const birds = await this.seedService.addClientsFromJson()
-    console.info(`${birds.length} Clients are added`)
+  async seedTickets() {
+    console.info("Start seeding of tickets")
+    const tickets = await this.seedService.addTicketFromJson()
+    console.info(`${tickets.length} Tickets are added`)
   }
 
   @Command({
-    command: "seed:reset:clients",
-    describe: "Delete all data from the clients table",
+    command: "seed:reset:tickets",
+    describe: "Delete all data from the tickets table",
   })
   async delete() {
-    console.info("🔪 Start deleting clients")
-    await this.seedService.deleteAllClients()
-    console.info("🪶 Removed clients")
+    console.info("Start deleting clients")
+    await this.seedService.deleteAllTickets()
+    console.info("Removed tickets")
   }
 }

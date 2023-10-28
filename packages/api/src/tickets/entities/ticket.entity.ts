@@ -1,5 +1,5 @@
-import { ObjectType, Field, Int, ID } from "@nestjs/graphql"
-import { User } from "src/users/entities/user.entity"
+import { ObjectType, Field, Int, ID, registerEnumType } from "@nestjs/graphql"
+import { User } from "../../users/entities/user.entity"
 import {
   Column,
   CreateDateColumn,
@@ -45,10 +45,11 @@ export class Ticket {
   @Field()
   isUsed: boolean
 
+  @Field()
   @Column({ nullable: true })
-  clientId: string
+  clientUid: string
 
-  @Field(() => User)
+  @Field(() => User, { nullable: true })
   client: User
 
   @CreateDateColumn({ type: "timestamp", nullable: true })

@@ -16,5 +16,5 @@ export class CreateTicketInput {
   endDay?: Date
 
   @Field(() => String, { nullable: true })
-  clientId?: string
+  clientUid?: string
 }
