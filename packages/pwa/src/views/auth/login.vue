@@ -63,11 +63,6 @@ const setLanguage = (event: Event) => {
   setLocale(target.value)
 }
 
-const loginCredentials = ref({
-  email: "kobe.despeghel@student.howest.be",
-  password: "",
-})
-
 const handleLogin = () => {
   login(loginCredentials.value.email, loginCredentials.value.password)
 }
