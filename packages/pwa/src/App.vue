@@ -32,9 +32,14 @@ export default {
 </script>
 
 <template>
-  <div>
-    <RouterView />
-    {{ locale }}
-    {{ $t("hallo") }}
+  <div class="font-poppins bg-BgBlack min-h-screen">
+  
+
+    <AppHeader />
+    <div class="pt-16">
+      <RouterView />
+    </div>
+    <!-- {{ locale }}
+    {{ $t("hallo") }} -->
   </div>
 </template>

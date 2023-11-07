@@ -27,5 +27,13 @@
     "proseWrap": "preserve",
     "htmlWhitespaceSensitivity": "css",
     "endOfLine": "lf"
+  },
+  "dependencies": {
+    "@unocss/preset-uno": "^0.57.1",
+    "axios": "^1.6.0",
+    "proxy-agent": "^6.3.1"
+  },
+  "devDependencies": {
+    "@unocss/preset-web-fonts": "^0.57.1"
   }
 }

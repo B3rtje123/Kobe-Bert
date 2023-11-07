@@ -7,6 +7,7 @@ import {
 import { onError } from '@apollo/client/link/error'
 import { logErrorMessages } from '@vue/apollo-util'
 import { setContext } from "@apollo/client/link/context"
+
 import useFirebase from "./useFirebase"
 
 const { firebaseUser } = useFirebase()
@@ -19,7 +20,7 @@ const httpLink = createHttpLink({
 const authLink = setContext(async (_, { headers }) => ({
   headers: {
     ...headers,
-    authorization: `Bearer ${await firebaseUser.value?.getIdToken()}`,
+    authorization: firebaseUser.value ? `Bearer ${await firebaseUser.value.getIdToken()}` : ``,
   },
 }))
 

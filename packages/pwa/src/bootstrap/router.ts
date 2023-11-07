@@ -35,9 +35,9 @@ const router = createRouter({
     //admin
     {
       path: "/attractie",
-      name: "attractie",
+      name: "attracties",
       component: () => import("../views/admin/attractie.vue"),
-      meta: { shouldBeAuthenticated: true },
+      // meta: { shouldBeAuthenticated: true },
     },
     {
       path: "/personeel",
@@ -47,9 +47,9 @@ const router = createRouter({
     },
     {
       path: "/restaurant",
-      name: "restaurant",
+      name: "restaurants",
       component: () => import("../views/admin/restaurant.vue"),
-      meta: { shouldBeAuthenticated: true },
+      // meta: { shouldBeAuthenticated: true },
     },
     {
       path: "/shop",
@@ -76,6 +76,11 @@ const router = createRouter({
       path: "/auth/forgot-password",
       name: "forgotPassword",
       component: () => import("../views/auth/forgotPassword.vue"),
+    },
+    {
+      path: "/profile",
+      name: "Account",
+      component: () => import("../views/profile.vue"),
     },
     //404
     {
