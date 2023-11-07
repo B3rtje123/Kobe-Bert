@@ -9,6 +9,7 @@ import {
   setPersistence,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
   type User,
 } from "firebase/auth"
 
@@ -40,15 +41,20 @@ const login = async (email: string, password: string): Promise<User> => {
   })
 }
 
-const register = async (email: string, password: string): Promise<User> => {
-  return new Promise((resolve, rejects) => {
+const register = async (
+  name: string,
+  email: string,
+  password: string,
+): Promise<User> => {
+  return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         firebaseUser.value = userCredential.user
+        updateProfile(firebaseUser.value, { displayName: name })
         resolve(userCredential.user)
       })
       .catch(error => {
-        rejects(error)
+        reject(error)
       })
   })
 }
@@ -67,12 +73,27 @@ const restoreUser = async (): Promise<User | null> => {
   })
 }
 
+const logout = async (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    signOut(auth)
+      .then(() => {
+        firebaseUser.value = null
+        resolve()
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
+
 export default () => {
   //state for each composable
 
   return {
     firebaseUser,
     login,
+    logout,
     restoreUser,
+    register,
   }
 }
