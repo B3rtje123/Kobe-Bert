@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleLogin"
-  class="flex min-h-screen justify-center items-center">
+  class="flex mt-16 justify-center items-center">
     <div class="rounded-lg max-w-sm shadow-[0_0_60px_-25px_rgba(0,0,0,0.3)] shadow-AccentBlue p-12 bg-MainWhite">
 
       <div class="text-center m-8">

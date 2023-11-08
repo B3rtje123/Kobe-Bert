@@ -9,9 +9,9 @@ export class CreateUserInput {
   @Field(() => String, { description: "name of the current user" })
   name: string
 
-  // @IsNotEmpty()
-  // @Field(() => String, { description: "email of the current user" })
-  // email: string
+  @IsNotEmpty()
+  @Field(() => String, { description: "email of the current user" })
+  email: string
 
   @Field(() => String, {
     description: "role of the current user",

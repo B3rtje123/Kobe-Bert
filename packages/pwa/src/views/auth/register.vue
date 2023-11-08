@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="handleRegister" 
-    class="flex min-h-screen justify-center items-center">
+    class="flex mt-16 justify-center items-center">
         <div class="rounded-lg max-w-sm shadow-[0_0_60px_-25px_rgba(0,0,0,0.3)] shadow-AccentBlue p-12 bg-MainWhite">
             <div class="text-center m-8">
                 <h1 class="text-3xl font-semibold">Sign up</h1>
@@ -161,7 +161,7 @@
         }
     }
     const passwordLength = (Password : string) => {
-        return Password.length > 8 ? true : false
+        return Password.length >= 8 ? true : false
     }
 
     const handleRegister = () => {
@@ -172,12 +172,16 @@
             .then(() => {
                 addUser({
                     createUserInput: {
+                        name: newUser.value.name,
+                        email: newUser.value.email,
+                        role: "CLIENT",
                         locale: locale.value,
                     },
                 }).then(result => {
                     if (!result?.data) throw new Error('Custom user creation failed')
 
                     customUser.value = result.data
+                    console.log(newUser)
                     replace('/')
                 })
             })
