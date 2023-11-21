@@ -1,0 +1,39 @@
+version: "3.1"
+name: api-pretpark-production
+
+services:
+  mongodb:
+    image: mongo
+    restart: on-failure:5 # On error, try to restart for a maximum of 5 times
+    ports:
+      - 27028:27017
+    environment:
+      MONGO_INITDB_DATABASE: api
+    volumes:
+      - dbvolumeproduction:/data/db
+
+  api:
+    build:
+      context: ../.
+      dockerfile: packages/api/Dockerfile
+    env_file:
+      - ./../packages/api/.env.production.local
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/my-google-secret
+    ports:
+      - 3001:3000 # External:What Is Set In Main.ts
+    secrets:
+      - my-google-secret
+
+  pwa:
+    build:
+      context: ../.
+      dockerfile: packages/pwa/Dockerfile
+    ports:
+      - 8081:80
+
+volumes:
+  dbvolumeproduction:
+secrets:
+  my-google-secret:
+    file: C:\AFSD\Kobe-Bert\packages\api\credentials.json
