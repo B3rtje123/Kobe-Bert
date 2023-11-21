@@ -51,3 +51,23 @@ copy from .env (development) and add the next line
 ```env
 VITE_BACKEND_URL=name-in-docker-compose:internal-port
 ```
+
+# seeding
+
+- tickets
+
+```bash
+npx nestjs-command seed:database:tickets
+```
+
+- reset all seeds
+
+```bash
+npx nestjs-command seed:reset
+```
+
+- reset specific seed
+
+```bash
+npx nestjs-command seed:reset:tickets
+```
