@@ -5,7 +5,7 @@ export enum Role {
 }
 
 export interface CustomUser {
-  id: string
-  uid: string
-  locale?: string
+    id: string
+    uid: string
+    locale?: string
 }

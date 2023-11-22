@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="handleRegister" 
-    class="flex mt-16 justify-center items-center">
+    class="flex mt-16 justify-center items-center text-BgBlack">
         <div class="rounded-lg max-w-sm shadow-[0_0_60px_-25px_rgba(0,0,0,0.3)] shadow-AccentBlue p-12 bg-MainWhite">
             <div class="text-center m-8">
                 <h1 class="text-3xl font-semibold">Sign up</h1>
@@ -15,7 +15,11 @@
                     id="nickname"
                     placeholder="Joey"
                     v-model="newUser.name"
-                    class="block rounded-lg border-2 p-2 shadow-inner w-full"
+                    required
+                    autocomplete="off"
+                    class="block rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-full transition-colors ease-in-out duration-300
+                    hover:border-AccentBlue 
+                    focus:outline-none focus:ring-4 focus:ring-AccentBlue"
                 />
             </div>
 
@@ -28,7 +32,10 @@
                     placeholder="example@domain.com"
                     v-model="newUser.email"
                     required
-                    class="block rounded-lg border-2 p-2 shadow-inner w-full"   
+                    autocomplete="off"
+                    class="block rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-full transition-colors ease-in-out duration-300
+                    hover:border-AccentBlue 
+                    focus:outline-none focus:ring-4 focus:ring-AccentBlue"   
                     @input=""
                 />
                 <p v-show="showError" class="text-red-500">{{ isValidEmail(newUser.email) ? "" : "Ongeldig e-mail adres" }}</p>
@@ -41,12 +48,14 @@
                     name="password"
                     id="password"
                     v-model="newUser.password"
-                    class="block rounded-lg border-2 p-2 shadow-inner w-full"
+                    autocomplete="off"
+                    class="block rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-full transition-colors ease-in-out duration-300
+                    hover:border-AccentBlue 
+                    focus:outline-none focus:ring-4 focus:ring-AccentBlue"
                     @input="isStrongPassword(newUser.password), passwordLength(newUser.password)"
                     
                 />
                 <div class="text-sm">
-                    
                     <p class="font-semibold" :class="{ 'text-green-700' : passwordLength(newUser.password), 'text-red-500' : !passwordLength(newUser.password) }">{{ passwordLength(newUser.password) ? "Je wachtwoord bevat 8 tekens" : "Moet minstens 8 tekens bevatten" }}</p>
                     <!-- <p>Make sure your password has the following:</p>
                     <ul class="">
@@ -85,8 +94,6 @@
                     </RouterLink>
                 </button>
             </div>
-
-            
         </div>
     </form>
 </template>

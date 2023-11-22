@@ -43,6 +43,10 @@ export class UsersService {
   //   return this.userRepository.findOneByOrFail({ id: id })
   // }
 
+  findAllStaff(){
+    return this.userRepository.find({where: {role: Role.STAFF}})
+  }
+
   findOneByUid(id: string) {
     return this.userRepository.findOneByOrFail({ uid: id })
   }

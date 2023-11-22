@@ -42,6 +42,14 @@ export class UsersResolver {
     return this.usersService.findOneByUid(id)
   }
 
+  //only admin can get all users
+  @AllowedRoles(Role.ADMIN)
+  @UseGuards(FireBaseGuard, RolesGuard)
+  @Query(() => [User], { name: "getAllStaff" })
+  findAllStaff(){
+    return this.usersService.findAllStaff()
+  }
+
   @Mutation(() => User)
   updateUser(@Args("updateUserInput") updateUserInput: UpdateUserInput) {
     return this.usersService.update(updateUserInput.id, updateUserInput)

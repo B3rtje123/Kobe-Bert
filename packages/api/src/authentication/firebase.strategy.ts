@@ -41,6 +41,7 @@ export class FirebaseAuthStrategy extends PassportStrategy(
   }
 
   private async authorize(jwtToken: string): Promise<DecodedIdToken> {
+    console.log(jwtToken)
     try {
       return await this.firebase
         .getAuth()
