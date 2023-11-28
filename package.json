@@ -2,7 +2,9 @@
   "name": "kobe-bert",
   "version": "0.0.0",
   "scripts": {
-    "dev": "todo"
+    "dev": "npx lerna run --scope={pwa,api} dev",
+    "dev:api": "npx lerna run --scope=api dev",
+    "dev:pwa": "npx lerna run --scope=pwa dev"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "proxy-agent": "^6.3.1"
   },
   "devDependencies": {
-    "@unocss/preset-web-fonts": "^0.57.1"
+    "@unocss/preset-web-fonts": "^0.57.1",
+    "lerna": "^7.4.2"
   }
 }
