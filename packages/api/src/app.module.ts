@@ -10,6 +10,7 @@ import { SeedModule } from "./seed/seed.module"
 import { UsersModule } from "./users/users.module"
 import { TicketsModule } from "./tickets/tickets.module"
 import { LocationsModule } from "./locations/locations.module"
+import { TicketTypeModule } from './ticket-type/ticket-type.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { LocationsModule } from "./locations/locations.module"
     UsersModule,
     TicketsModule,
     LocationsModule,
+    TicketTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
