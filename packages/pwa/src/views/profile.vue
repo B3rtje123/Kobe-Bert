@@ -1,15 +1,18 @@
 <template>
-    <div v-if="userResult" class="flex text-center flex-col">
+    <div v-if="userResult" class="flex text-center flex-col pb-8">
         <div class="flex justify-center items-center mt-16 gap-8">
             <img class="rounded-full lg:w-1/7 self-center" src="../components/img/coding-logo-design-template-free-vector.jpg" alt="">
-            <div>
-                <p class="text-2xl font-medium m-4">{{ userResult.getUserByUid.name }}</p>
+            <div class="flex flex-col gap-4">
+                <p class="text-2xl font-medium text-left">{{ userResult.getUserByUid.name }}</p>
                 <Button v-if="!userEditActive" class="text-sm" @click="userEditActive = !userEditActive">
                     <p>Edit</p>
                 </Button>
                 <Button v-else class="text-sm" @click="userEditActive = !userEditActive">
                     <p>Save</p>
                 </Button>
+                <Button @click="logoutUser" >
+                    {{ $t('Logout') }}
+                </Button> 
             </div> 
         </div>
 
@@ -18,57 +21,68 @@
         </div>
 
         <div class="flex justify-center">
-            <div class="text-left w-3/4">
-                <label for="email">Email:</label>
-                <input 
-                    type="text"
-                    name="email"
-                    id="email"
-                    v-bind:readonly="!userEditActive"
-                    v-bind:placeholder='userResult.getUserByUid.email ? userResult.getUserByUid.email : "No email found!"'
-                    v-model="userResult.getUserByUid.email"
-                />
+            <div class="justify-between text-left flex flex-wrap w-8/12">
 
-                <label for="fullName">Full name:</label>
-                <input 
-                    type="text"
-                    name="fullName"
-                    id="fullName"
-                    v-bind:readonly="!userEditActive"
-                    v-bind:placeholder='userResult.getUserByUid.fullName ? userResult.getUserByUid.fullName : "No full name found!"'
-                    v-model="userInfo.fullName"
-                />
+                <div class="w-[45%] flex flex-col">
+                    <label for="fullName" class="mb-2">Full name:</label>
+                    <input 
+                        class="mb-6 text-MainWhite border-MainWhite/50 bg-transparent border-2 p-4 rounded-full"
+                        type="text"
+                        name="fullName"
+                        id="fullName"
+                        v-bind:readonly="!userEditActive"
+                        v-bind:placeholder='userResult.getUserByUid.fullName ? userResult.getUserByUid.fullName : "No full name found!"'
+                        v-model="userInfo.fullName"
+                    />
+                </div>
 
-                <label for="phoneNumber">Phone number:</label>
-                <input 
-                    type="text"
-                    name="phoneNumber"
-                    id="phoneNumber"
-                    v-bind:readonly="!userEditActive"
-                    v-model="userInfo.phoneNumber"
-                    v-bind:placeholder='userResult.getUserByUid.phoneNumber ? userResult.getUserByUid.phoneNumber : "No phone number found!"'
-                />
-                <!-- <p>{{ result.getUserByUid.phoneNumber ? result.geUserById.phoneNumber : "null"}}</p> -->
+                <div class="w-[45%] flex flex-col">
+                    <label for="email" class="mb-2">Email:</label>
+                    <input 
+                        class="mb-6 text-MainWhite bg-transparent border-MainWhite/50 border-2 p-4 rounded-full"
+                        type="text"
+                        name="email"
+                        id="email"
+                        v-bind:readonly="!userEditActive"
+                        v-bind:placeholder='userResult.getUserByUid.email ? userResult.getUserByUid.email : "No email found!"'
+                        v-model="userResult.getUserByUid.email"
+                    />
+                </div>
+
+
+
+                <div class="w-[45%] flex flex-col">
+                    <label for="phoneNumber" class="mb-2">Phone number:</label>
+                    <input 
+                        class="text-MainWhite border-MainWhite/50 bg-transparent border-2 p-4 rounded-full"
+                        type="text"
+                        name="phoneNumber"
+                        id="phoneNumber"
+                        v-bind:readonly="!userEditActive"
+                        v-model="userInfo.phoneNumber"
+                        v-bind:placeholder='userResult.getUserByUid.phoneNumber ? userResult.getUserByUid.phoneNumber : "No phone number found!"'
+                    />
+                </div>
             </div>
         </div>   
 
         <!-- werkuren -->
         <section v-if="userResult.getUserByUid.role == 'STAFF' || userResult.getUserByUid.role == 'ADMIN'">
             <div class="inline-flex items-center justify-center w-full">
-                <hr class="w-3/4 h-px translate-y-0.5 my-8 bg-MainWhite border-0">
+                <hr class="w-3/4 h-px translate-y-0.5 my-8 bg-MainWhite/15 border-0">
             </div>
             <div class="flex w-full justify-center mb-4">
-                <h1 class="text-left w-3/4">When do I have to work?</h1>
+                <h1 class="text-left w-3/4 font-semibold text-2xl">When do I have to work?</h1>
             </div>
             
             <div class="flex justify-center text-left">
                 <table class="table-auto w-8/12">
                     <thead class="">
                         <tr>
-                            <th class="pr-8 pl-2 pb-4">
+                            <th class="pr-8 pl-2 border-r pb-4">
                                 Workdays
                             </th>
-                            <th class="pr-8 pb-4 pl-2">
+                            <th class="pr-8 pb-4 border-r pl-2">
                                 Start
                             </th>
                             <th class="pr-8 pb-4 pl-2">
@@ -90,11 +104,11 @@
         <!-- VakantieDagen -->
         <section v-if="userResult.getUserByUid.role == 'STAFF' || userResult.getUserByUid.role == 'ADMIN'">
             <div class="inline-flex items-center justify-center w-full">
-                <hr class="w-3/4 h-px translate-y-0.5 my-8 bg-MainWhite border-0">
+                <hr class="w-3/4 h-px translate-y-0.5 my-8 bg-MainWhite/15 border-0">
             </div>
 
             <div class="flex w-full justify-center mb-4">
-                <h1 class="text-left w-3/4">When do I have my vacation?</h1>
+                <h1 class="text-left w-3/4 font-semibold text-2xl">When do I have my vacation?</h1>
             </div>
             
             <div class="flex justify-center text-left">
@@ -119,13 +133,14 @@
             </div>  
         </section>
         
+        <!-- List of all staffmembers (only visible when ADMIN) -->
         <section v-if="userResult.getUserByUid.role == 'ADMIN'">
             <div class="inline-flex items-center justify-center w-full">
-                <hr class="w-3/4 h-px translate-y-0.5 my-8 bg-MainWhite border-0">
+                <hr class="w-3/4 h-px translate-y-0.5 my-8 bg-MainWhite/15 border-0">
             </div>
 
             <div class="flex w-full justify-center mb-4">
-                <h1 class="text-left w-3/4">When do I have my vacation?</h1>
+                <h1 class="text-left w-3/4 font-semibold text-2xl">All staff members</h1>
             </div>
             
             <div class="flex justify-center text-left">
@@ -164,11 +179,7 @@
                     </tbody>
                 </table>
             </div>  
-        </section>
-
-        <Button @click="logoutUser" >
-            {{ $t('Logout') }}
-        </Button>     
+        </section>    
     </div>
     <div v-else>
         <p>Log in om een account te zien</p>
@@ -190,6 +201,8 @@
     import Button from '../components/generic/CtaButton.vue'
     import { datacatalog } from 'googleapis/build/src/apis/datacatalog'
     import { table } from 'console';
+import { type } from 'os'
+import { text } from 'node:stream/consumers'
 
     const { firebaseUser, logout } = useFirebase()
     const { replace } = useRouter()
