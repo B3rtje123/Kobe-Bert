@@ -32,7 +32,7 @@ export default {
 </script>
 
 <template>
-  <div class="font-poppins bg-BgBlack min-h-screen">
+  <div class="font-poppins bg-BgBlack text-MainWhite min-h-screen">
   
 
     <AppHeader />
