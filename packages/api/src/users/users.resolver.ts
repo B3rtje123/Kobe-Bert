@@ -32,6 +32,8 @@ export class UsersResolver {
     return this.usersService.findAll()
   }
 
+  //TODO: get all staff and admin
+
   // @Query(() => User, { name: "getUserById" })
   // findOne(@Args("string", { type: () => String }) id: string) {
   //   return this.usersService.findOneById(id)
