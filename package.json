@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "npx lerna run --scope={pwa,api} dev",
     "dev:api": "npx lerna run --scope=api dev",
-    "dev:pwa": "npx lerna run --scope=pwa dev"
+    "dev:pwa": "npx lerna run --scope=pwa dev",
+    "dev:emulate": "npx lerna run --scope={pwa,api} dev:emulate --stream"
   },
   "repository": {
     "type": "git",

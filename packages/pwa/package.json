@@ -7,7 +7,8 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
+    "dev:emulate": "VITE_EMULATION=true npm run dev | npx firebase-tools emulators:start --only auth"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
@@ -21,6 +22,7 @@
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^18.17.15",
     "@vitejs/plugin-vue": "^4.3.4",
