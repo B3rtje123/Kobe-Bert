@@ -18,7 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "dev:emulate": "FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 npm run dev"
+    "dev:emulate": "SET FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 npm run dev"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
@@ -35,6 +35,7 @@
     "class-validator": "^0.14.0",
     "firebase-admin": "^11.11.0",
     "graphql": "^16.8.1",
+    "mongodb-memory-server": "^9.1.1",
     "nestjs-command": "^3.1.4",
     "passport": "^0.6.0",
     "passport-http-bearer": "^1.0.1",

@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "dev:emulate": "VITE_EMULATION=true npm run dev | npx firebase-tools emulators:start --only auth"
+    "dev:emulate": "SET VITE_EMULATION=true & npm run dev | npx firebase-tools emulators:start --only auth"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
