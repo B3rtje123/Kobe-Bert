@@ -2,18 +2,22 @@ import { Injectable } from "@nestjs/common"
 
 import { UsersService } from "src/users/users.service"
 import { User } from "src/users/entities/user.entity"
-import { Ticket, TicketType } from "src/tickets/entities/ticket.entity"
+import { Ticket } from "src/tickets/entities/ticket.entity"
 import { TicketsService } from "src/tickets/tickets.service"
 
 //data
 import * as clients from "./data/clients.json"
 import * as tickets from "./data/tickets.json"
+import * as ticketTypes from "./data/ticketTypes.json"
+import { TicketType } from "src/ticket-type/entities/ticket-type.entity"
+import { TicketTypeService } from "src/ticket-type/ticket-type.service"
 
 @Injectable()
 export class SeedService {
   constructor(
     private usersService: UsersService,
     private ticketService: TicketsService,
+    private ticketTypesService: TicketTypeService,
   ) {}
 
   // async addClientsFromJson(): Promise<User[]> {
@@ -29,6 +33,26 @@ export class SeedService {
   //   return this.usersService.saveAll(theClients)
   // }
 
+  // seeding ticket types ------------------------------------------
+  async addTicketTypeFromJson(): Promise<TicketType[]> {
+    let theTicketTypes: TicketType[] = []
+    for (let ticketType of ticketTypes) {
+      const t = new TicketType()
+      t.name = ticketType.name
+      t.amount = ticketType.amount
+      t.price = ticketType.price
+
+      theTicketTypes.push(t)
+    }
+
+    return this.ticketTypesService.saveAll(theTicketTypes)
+  }
+
+  async deleteAllTicketTypes(): Promise<void> {
+    return this.ticketTypesService.truncate()
+  }
+
+  // seeding tickets ------------------------------------------
   async addTicketFromJson(): Promise<Ticket[]> {
     let theTickets: Ticket[] = []
     for (let ticket of tickets) {
@@ -50,6 +74,7 @@ export class SeedService {
     return this.ticketService.truncate()
   }
 
+  // delete all seeding -----------------------------------------
   async deleteAllClients(): Promise<void> {
     return this.usersService.truncate()
   }

@@ -48,4 +48,13 @@ export class TicketTypeService {
   remove(id: string) {
     return this.TicketTypeRepository.delete(id)
   }
+
+  //functions for seeding
+  saveAll(ticketTypes: TicketType[]): Promise<TicketType[]> {
+    return this.TicketTypeRepository.save(ticketTypes)
+  }
+
+  truncate(): Promise<void> {
+    return this.TicketTypeRepository.clear()
+  }
 }
