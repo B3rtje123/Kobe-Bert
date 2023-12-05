@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { initializeApp } from "firebase/app"
 import {
   browserLocalPersistence,
+  connectAuthEmulator,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
@@ -24,6 +25,11 @@ const app = initializeApp({
 })
 
 const auth = getAuth(app)
+
+// When the emulator is running, connect to it
+if (import.meta.env.VITE_EMULATION)
+  connectAuthEmulator(auth, "http://127.0.0.1:9099")
+
 setPersistence(auth, browserLocalPersistence) //keep track of logged in user in the browser
 
 const firebaseUser = ref<User | null>(auth.currentUser)

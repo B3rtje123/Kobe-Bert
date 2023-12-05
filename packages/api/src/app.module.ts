@@ -10,20 +10,43 @@ import { SeedModule } from "./seed/seed.module"
 import { UsersModule } from "./users/users.module"
 import { TicketsModule } from "./tickets/tickets.module"
 import { LocationsModule } from "./locations/locations.module"
+import { MongoMemoryServer } from "mongodb-memory-server"
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
 
-    TypeOrmModule.forRoot({
-      type: "mongodb",
-      // url: "mongodb://localhost:27028/api",
-      url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, //DOCKER
-      entities: [__dirname + "/**/*.entity.{js,ts}"],
-      // synchronize: true, // Careful with this in production
-      synchronize: process.env.NODE_ENV == "production" ? false : true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true, // Disable deprecated warnings
+    TypeOrmModule.forRootAsync({
+      useFactory: async () => {
+        if (process.env.FIREBASE_AUTH_EMULATOR_HOST) {
+          const mongo = await MongoMemoryServer.create({
+            instance: {
+              dbName: process.env.DB_NAME,
+            },
+          })
+
+          const mongoUri = mongo.getUri()
+          console.log("🍃 mongoUri", mongoUri)
+
+          return {
+            type: "mongodb",
+            url: `${mongoUri}${process.env.DB_NAME}`,
+            entities: [__dirname + "/**/*.entity.{js,ts}"],
+            synchronize: process.env.NODE_ENV == "production" ? false : true, // Careful with this in production
+            useNewUrlParser: true,
+            useUnifiedTopology: true, // Disable deprecated warnings
+          }
+        } else {
+          return {
+            type: "mongodb",
+            url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, // DOCKER
+            entities: [__dirname + "/**/*.entity.{js,ts}"],
+            synchronize: process.env.NODE_ENV == "production" ? false : true, // Careful with this in production
+            useNewUrlParser: true,
+            useUnifiedTopology: true, // Disable deprecated warnings
+          }
+        }
+      },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
