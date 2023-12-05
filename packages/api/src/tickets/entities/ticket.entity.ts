@@ -4,19 +4,21 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ObjectId,
   ObjectIdColumn,
   UpdateDateColumn,
 } from "typeorm"
+import { TicketType } from "src/ticket-type/entities/ticket-type.entity"
 
 //TODO: make into entity
-export enum TicketType {
-  STANDARD = "STANDARD",
-  KIDS = "KIDS",
-  SENIOR = "SENIOR",
-  STUDENT = "STUDENT",
-  GROUP = "GROUP",
-  YEARPASS = "YEARPASS",
-}
+// export enum TicketType {
+//   STANDARD = "STANDARD",
+//   KIDS = "KIDS",
+//   SENIOR = "SENIOR",
+//   STUDENT = "STUDENT",
+//   GROUP = "GROUP",
+//   YEARPASS = "YEARPASS",
+// }
 
 @ObjectType()
 @Entity()
@@ -30,7 +32,9 @@ export class Ticket {
   barcode: string //code-128 format: TYP YYMMDD XXXX (type, startday, id)
 
   @Column()
-  @Field(() => String)
+  typeId: string
+
+  @Field(() => TicketType)
   type: TicketType
 
   @Column({ type: "date" })
