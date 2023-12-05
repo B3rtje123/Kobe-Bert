@@ -1,7 +1,13 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, Float } from "@nestjs/graphql"
 
 @InputType()
 export class CreateTicketTypeInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field(() => String)
+  name: string
+
+  @Field(() => Int)
+  amount: number
+
+  @Field(() => Float)
+  price: number
 }

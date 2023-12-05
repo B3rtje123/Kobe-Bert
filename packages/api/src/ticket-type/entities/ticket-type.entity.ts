@@ -1,34 +1,36 @@
-import { ObjectType, Field, Int } from "@nestjs/graphql"
+import { ObjectType, Field, Int, Float, ID } from "@nestjs/graphql"
 import {
   Column,
   CreateDateColumn,
+  Entity,
   ObjectIdColumn,
   UpdateDateColumn,
 } from "typeorm"
 
 @ObjectType()
+@Entity()
 export class TicketType {
   @ObjectIdColumn()
-  @Field(() => Int)
-  id: number
+  @Field(() => ID)
+  id: string
 
   @Column()
-  @Field()
+  @Field(() => String)
   name: string
 
   @Column()
-  @Field()
+  @Field(() => Int)
   amount: number
 
   @Column()
-  @Field()
+  @Field(() => Float)
   price: number
 
   @CreateDateColumn()
-  @Field()
+  @Field(() => Date)
   createdAt: Date
 
   @UpdateDateColumn()
-  @Field()
+  @Field(() => Date)
   updatedAt: Date
 }

@@ -1,26 +1,51 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTicketTypeInput } from './dto/create-ticket-type.input';
-import { UpdateTicketTypeInput } from './dto/update-ticket-type.input';
+import { Injectable } from "@nestjs/common"
+import { CreateTicketTypeInput } from "./dto/create-ticket-type.input"
+import { UpdateTicketTypeInput } from "./dto/update-ticket-type.input"
+import { InjectRepository } from "@nestjs/typeorm"
+import { TicketType } from "./entities/ticket-type.entity"
+import { Repository } from "typeorm"
+import { ObjectId } from "mongodb"
 
 @Injectable()
 export class TicketTypeService {
+  constructor(
+    @InjectRepository(TicketType)
+    private readonly TicketTypeRepository: Repository<TicketType>,
+  ) {}
+
   create(createTicketTypeInput: CreateTicketTypeInput) {
-    return 'This action adds a new ticketType';
+    const type = new TicketType()
+    type.name = createTicketTypeInput.name
+    type.amount = createTicketTypeInput.amount
+    type.price = createTicketTypeInput.price
+    return this.TicketTypeRepository.save(type)
   }
 
   findAll() {
-    return `This action returns all ticketType`;
+    return this.TicketTypeRepository.find()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ticketType`;
+  findOne(id: string) {
+    //@ts-ignore
+    return this.TicketTypeRepository.findOne({ _id: new ObjectId(id) })
   }
 
-  update(id: number, updateTicketTypeInput: UpdateTicketTypeInput) {
-    return `This action updates a #${id} ticketType`;
+  async update(id: string, updateTicketTypeInput: UpdateTicketTypeInput) {
+    const currentTicketType = await this.findOne(id)
+
+    const updatedTicketType = new TicketType()
+    updatedTicketType.id = currentTicketType.id
+    updatedTicketType.name =
+      updateTicketTypeInput.name ?? currentTicketType.name
+    updatedTicketType.amount =
+      updateTicketTypeInput.amount ?? currentTicketType.amount
+    updatedTicketType.price =
+      updateTicketTypeInput.price ?? currentTicketType.price
+
+    return this.TicketTypeRepository.save(updatedTicketType)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ticketType`;
+  remove(id: string) {
+    return this.TicketTypeRepository.delete(id)
   }
 }

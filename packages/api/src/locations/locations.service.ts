@@ -50,6 +50,6 @@ export class LocationsService {
   }
 
   remove(id: number) {
-    return this.remove(id)
+    return this.LocationRepository.delete(id)
   }
 }
