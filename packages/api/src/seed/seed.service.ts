@@ -58,7 +58,12 @@ export class SeedService {
     for (let ticket of tickets) {
       const t = new Ticket()
       // let type: TicketType = ticket.type
-      t.type = TicketType[ticket.type]
+
+      //get types of tickets
+      const types = await this.ticketTypesService.findAll()
+
+      t.type = types.find(type => type.name === ticket.type)
+
       t.startDay = new Date(ticket.startDay)
       t.endDay = new Date(ticket.endDay)
       // t.isUsed = ticket.isUsed
