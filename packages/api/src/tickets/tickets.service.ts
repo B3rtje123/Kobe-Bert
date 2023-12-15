@@ -1,27 +1,33 @@
 import { Injectable } from "@nestjs/common"
 import { CreateTicketInput } from "./dto/create-ticket.input"
 import { UpdateTicketInput } from "./dto/update-ticket.input"
-import { Ticket, TicketType } from "./entities/ticket.entity"
+import { Ticket } from "./entities/ticket.entity"
 import { Repository } from "typeorm"
 import { ObjectId } from "mongodb"
 import { InjectRepository } from "@nestjs/typeorm"
 import { UsersService } from "src/users/users.service"
+import { TicketType } from "src/ticket-type/entities/ticket-type.entity"
+import { TicketTypeService } from "src/ticket-type/ticket-type.service"
 
 @Injectable()
 export class TicketsService {
   constructor(
     @InjectRepository(Ticket)
     private readonly TicketRepository: Repository<Ticket>,
+    private readonly TicketTypeService: TicketTypeService,
     private readonly UsersService: UsersService,
   ) {}
 
   async create(createTicketInput: CreateTicketInput, userUid: string) {
     const ticket = new Ticket()
-    ticket.type = createTicketInput.type ?? TicketType.STANDARD
     ticket.isUsed = false
+    ticket.typeId = createTicketInput.typeId
     ticket.startDay = createTicketInput.startDay
-    if (ticket.type !== TicketType.YEARPASS) ticket.endDay = ticket.startDay
-    if (ticket.type === TicketType.YEARPASS)
+
+    ticket.type = await this.TicketTypeService.findOne(ticket.typeId)
+
+    if (ticket.type.name !== "YEARPASS") ticket.endDay = ticket.startDay
+    if (ticket.type.name === "YEARPASS")
       ticket.endDay = createTicketInput.endDay
 
     ticket.clientUid = userUid ?? null
@@ -35,7 +41,7 @@ export class TicketsService {
     // ticket.id = new Types.ObjectId().toString()
     const tickets = await this.findByDate(ticket.startDay)
     ticket.barcode =
-      ticket.type.substring(0, 3) +
+      ticket.type.name.substring(0, 3) +
       " " +
       ticket.startDay.toISOString().substring(2, 10).replaceAll("-", "") +
       " " +
@@ -59,13 +65,35 @@ export class TicketsService {
     return this.TicketRepository.findOne({ where: { barcode } })
   }
 
-  findOneById(id: string) {
-    // @ts-ignore
-    return this.TicketRepository.findOne({ _id: new ObjectId(id) })
+  async findByUid(uid: string): Promise<Ticket[]> {
+    let tickets = await this.TicketRepository.find({
+      where: { clientUid: uid },
+    })
+
+    // const newTickets = await tickets.map(async ticket => {
+    let counter = 0
+    const newTickets = await Promise.all(
+      tickets.map(async ticket => {
+        ticket.type = await this.TicketTypeService.findOne(ticket.typeId)
+        ticket.client = await this.UsersService.findOneByUid(ticket.clientUid)
+        tickets[counter] = ticket
+        // console.log(tickets[counter])
+        counter++
+        return ticket
+      }),
+    )
+    // console.log(tickets)
+    return newTickets
   }
 
-  findByUid(uid: string) {
-    return this.TicketRepository.find({ where: { clientUid: uid } })
+  async findOneById(id: string) {
+    const ticket = await this.TicketRepository.findOneBy({
+      // @ts-ignore
+      _id: new ObjectId(id),
+    })
+    ticket.type = await this.TicketTypeService.findOne(ticket.typeId)
+    ticket.client = await this.UsersService.findOneByUid(ticket.clientUid)
+    return ticket
   }
 
   ticketUsed(ticketId: string) {

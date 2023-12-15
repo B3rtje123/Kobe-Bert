@@ -11,6 +11,7 @@ import { UsersModule } from "./users/users.module"
 import { TicketsModule } from "./tickets/tickets.module"
 import { LocationsModule } from "./locations/locations.module"
 import { MongoMemoryServer } from "mongodb-memory-server"
+import { TicketTypeModule } from "./ticket-type/ticket-type.module"
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { MongoMemoryServer } from "mongodb-memory-server"
     UsersModule,
     TicketsModule,
     LocationsModule,
+    TicketTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "STANDARD",
+        "amount": 300,
+        "price": 39.95
+    },
+    {
+        "name": "KIDS",
+        "amount": 500,
+        "price": 19.95
+    },
+    {
+        "name": "SENIOR",
+        "amount": 200,
+        "price": 29.95
+    },
+    {
+        "name": "STUDENT",
+        "amount": 300,
+        "price": 29.95
+    },
+    {
+        "name": "GROUP",
+        "amount": 20,
+        "price": 100
+    },
+    {
+        "name": "YEARPASS",
+        "amount": 500,
+        "price": 345
+    }
+]
