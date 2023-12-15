@@ -41,7 +41,6 @@ export class TicketsResolver {
   @Query(() => [Ticket], { name: "getTicketsByUserId" })
   findByUid(@FirebaseUser() user: UserRecord) {
     //TODO: check if staff or admin
-    //TODO: bug: client returns null
 
     return this.ticketsService.findByUid(user.uid)
   }
