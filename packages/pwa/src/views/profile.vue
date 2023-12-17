@@ -237,7 +237,7 @@ const admin = ref(false)
 
 const { result } = useQuery(GET_USER_BY_UID, { uid: firebaseUser.value?.uid })
 const userResult = computed(() => result.value)
-console.log(firebaseUser.value)
+// console.log(firebaseUser.value)
 
 const resultStaff = useQuery(GET_ALL_STAFF)
 const staffResult = computed(() => resultStaff.result.value)
