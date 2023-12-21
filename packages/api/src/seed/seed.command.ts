@@ -47,4 +47,25 @@ export class DatabaseSeedCommand {
     await this.seedService.deleteAllTicketTypes()
     console.info("Removed ticket types")
   }
+
+  // seeding ticket types -----------------
+  @Command({
+    command: "seed:database:locations",
+    describe: "Seed the database with locations",
+  })
+  async seedLocations() {
+    console.info("Start seeding of locations")
+    const locations = await this.seedService.addLocationsFromJson()
+    console.info(`${locations.length} Locations are added`)
+  }
+
+  @Command({
+    command: "seed:reset:locations",
+    describe: "Delete all data from the locations table",
+  })
+  async deleteLocations() {
+    console.info("Start deleting locations")
+    await this.seedService.deleteAllLocations()
+    console.info("Removed locations")
+  }
 }

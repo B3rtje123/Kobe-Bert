@@ -55,9 +55,17 @@ VITE_BACKEND_URL=name-in-docker-compose:internal-port
 # seeding
 
 - tickets
+  seed the ticket types first then the tickets
 
 ```bash
+npx nestjs-command seed:database:ticket-types
 npx nestjs-command seed:database:tickets
+```
+
+- locations
+
+```bash
+npx nestjs-command seed:database:locations
 ```
 
 - reset all seeds
@@ -70,4 +78,6 @@ npx nestjs-command seed:reset
 
 ```bash
 npx nestjs-command seed:reset:tickets
+npx nestjs-command seed:reset:tickets-types
+npx nestjs-command seed:reset:locations
 ```

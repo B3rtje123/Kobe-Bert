@@ -9,8 +9,11 @@ import { TicketsService } from "src/tickets/tickets.service"
 import * as clients from "./data/clients.json"
 import * as tickets from "./data/tickets.json"
 import * as ticketTypes from "./data/ticketTypes.json"
+import * as locations from "./data/locations.json"
 import { TicketType } from "src/ticket-type/entities/ticket-type.entity"
 import { TicketTypeService } from "src/ticket-type/ticket-type.service"
+import { Location, LocationType } from "src/locations/entities/location.entity"
+import { LocationsService } from "src/locations/locations.service"
 
 @Injectable()
 export class SeedService {
@@ -18,6 +21,7 @@ export class SeedService {
     private usersService: UsersService,
     private ticketService: TicketsService,
     private ticketTypesService: TicketTypeService,
+    private locationService: LocationsService,
   ) {}
 
   // async addClientsFromJson(): Promise<User[]> {
@@ -77,6 +81,25 @@ export class SeedService {
 
   async deleteAllTickets(): Promise<void> {
     return this.ticketService.truncate()
+  }
+
+  //seeding locations ------------------------------------------
+  async addLocationsFromJson(): Promise<Location[]> {
+    let theLocations: Location[] = []
+    for (let location of locations) {
+      const l = new Location()
+      l.name = location.name
+      l.type = LocationType[location.type]
+      l.openHours = JSON.parse(JSON.stringify(location.openingHours))
+      l.coords = [location.coords.toString()]
+
+      theLocations.push(l)
+    }
+    return this.locationService.saveAll(theLocations)
+  }
+
+  async deleteAllLocations(): Promise<void> {
+    return this.locationService.truncate()
   }
 
   // delete all seeding -----------------------------------------
