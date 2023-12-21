@@ -18,6 +18,11 @@ const router = createRouter({
       component: () => import("../views/client/ticket.vue"),
     },
     {
+      path: "/ticket/buy",
+      name: "buyTicket",
+      component: () => import("../views/client/buyTicket.vue"),
+    },
+    {
       path: "/helpdesk",
       name: "helpdesk",
       component: () => import("../views/client/helpdesk.vue"),

@@ -1,0 +1,182 @@
+[
+    {
+        "name": "crusty crab",
+        "type": "RESTAURANT",
+        "openingHours": [
+            "9:00",
+            "17:00"
+        ],
+        "coords": [
+            39.999174,
+            118.701144
+        ]
+    },
+    {
+        "name": "tower of terror",
+        "type": "ATTRACTION",
+        "openingHours": [
+            "8:30",
+            "18:00"
+        ],
+        "coords": [
+            13.2910707,
+            -87.3003706
+        ]
+    },
+    {
+        "name": "service east",
+        "type": "SERVICE",
+        "openingHours": [
+            "8:00",
+            "18:30"
+        ],
+        "coords": [
+            37.768027,
+            117.087268
+        ]
+    },
+    {
+        "name": "P1",
+        "type": "PARKING",
+        "openingHours": [
+            "8:00",
+            "18:30"
+        ],
+        "coords": [
+            -7.0872117,
+            110.9134113
+        ]
+    },
+    {
+        "name": "toilet north",
+        "type": "TOILET",
+        "openingHours": [
+            "8:30",
+            "18:00"
+        ],
+        "coords": [
+            5.695633,
+            -76.649812
+        ]
+    },
+    {
+        "name": "P2",
+        "type": "PARKING",
+        "openingHours": [
+            "8:00",
+            "18:30"
+        ],
+        "coords": [
+            48.6943534,
+            25.1747279
+        ]
+    },
+    {
+        "name": "hotel california",
+        "type": "HOTEL",
+        "openingHours": [
+            "7:00",
+            "23:00"
+        ],
+        "coords": [
+            27.0449005,
+            84.8672171
+        ]
+    },
+    {
+        "name": "main entrance",
+        "type": "ENTRANCE",
+        "openingHours": [
+            "8:30",
+            "18:00"
+        ],
+        "coords": [
+            35.9477355,
+            138.1885404
+        ]
+    },
+    {
+        "nam": "P3",
+        "type": "PARKING",
+        "openingHours": [
+            "8:00",
+            "18:30"
+        ],
+        "coords": [
+            40.2361837,
+            20.3517334
+        ]
+    },
+    {
+        "name": "resto besto",
+        "type": "RESTAURANT",
+        "openingHours": [
+            "9:00",
+            "17:00"
+        ],
+        "coords": [
+            -28.3307679,
+            31.4256183
+        ]
+    },
+    {
+        "name": "staff entrance",
+        "type": "ENTRANCE",
+        "openingHours": [
+            "8:00",
+            "19:00"
+        ],
+        "coords": [
+            50.2709275,
+            12.7842341
+        ]
+    },
+    {
+        "name": "service south",
+        "type": "SERVICE",
+        "openingHours": [
+            "8:00",
+            "18:30"
+        ],
+        "coords": [
+            40.6892276,
+            -8.6031905
+        ]
+    },
+    {
+        "name": "P4",
+        "type": "PARKING",
+        "openingHours": [
+            "8:00",
+            "18:30"
+        ],
+        "coords": [
+            59.954793,
+            30.2145439
+        ]
+    },
+    {
+        "name": "toilet south",
+        "type": "TOILET",
+        "openingHours": [
+            "8:30",
+            "18:00"
+        ],
+        "coords": [
+            39.1110776,
+            -7.8704768
+        ]
+    },
+    {
+        "name": "hotel waterfront",
+        "type": "HOTEL",
+        "openingHours": [
+            "7:00",
+            "23:00"
+        ],
+        "coords": [
+            -29.2581646,
+            -51.5289168
+        ]
+    }
+]

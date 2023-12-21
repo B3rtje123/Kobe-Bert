@@ -52,4 +52,13 @@ export class LocationsService {
   remove(id: number) {
     return this.LocationRepository.delete(id)
   }
+
+  // seeding
+  saveAll(locations: Location[]) {
+    return this.LocationRepository.save(locations)
+  }
+
+  truncate() {
+    return this.LocationRepository.clear()
+  }
 }

@@ -28,7 +28,7 @@ export class TicketsService {
 
     if (ticket.type.name !== "YEARPASS") ticket.endDay = ticket.startDay
     if (ticket.type.name === "YEARPASS")
-      ticket.endDay = createTicketInput.endDay
+      ticket.endDay.setFullYear(ticket.startDay.getFullYear() + 1)
 
     ticket.clientUid = userUid ?? null
     //if useruid is given, find user and add to ticket

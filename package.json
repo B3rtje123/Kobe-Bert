@@ -32,8 +32,10 @@
     "endOfLine": "lf"
   },
   "dependencies": {
+    "@chenfengyuan/vue-barcode": "^2.0.2",
     "@unocss/preset-uno": "^0.57.1",
     "axios": "^1.6.0",
+    "jsbarcode": "^3.11.6",
     "proxy-agent": "^6.3.1"
   },
   "devDependencies": {
