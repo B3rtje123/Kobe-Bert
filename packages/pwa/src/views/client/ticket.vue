@@ -4,7 +4,7 @@
       to="/ticket/buy"
       class="bg-AccentBlue text-2xl lg:text-lg font-semibold text-MainWhite rounded py-1.5 px4 transition ease-in-out duration-300 hover:bg-sky-600 hover:text-BgBlack focus:outline-none focus:bg-transparent focus:ring-4 focus:ring-sky-600 focus:text-AccentBlue"
     >
-      Buy tickets
+      {{ $t("tickets.buy") }}
     </RouterLink>
   </div>
 
@@ -13,8 +13,8 @@
     <table class="table-auto w-8/12" v-if="!ticketsLoading">
       <thead class="">
         <tr>
-          <th class="pr-8 pl-2 pb-4 border-r">type</th>
-          <th class="pr-8 pb-4 pl-2 border-r">day</th>
+          <th class="pr-8 pl-2 pb-4 border-r">{{ $t("tickets.type") }}</th>
+          <th class="pr-8 pb-4 pl-2 border-r">{{ $t("general.date") }}</th>
           <th class="pb-4 border-r">barcode</th>
         </tr>
       </thead>

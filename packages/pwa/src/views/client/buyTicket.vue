@@ -32,7 +32,9 @@
       </div>
 
       <div class="mb-6">
-        <label for="date" class="mb-4 font-medium">email</label>
+        <label for="date" class="mb-4 font-medium">{{
+          $t("general.date")
+        }}</label>
         <input
           type="date"
           name="date"
@@ -48,7 +50,7 @@
         type="submit"
         class="w-full py-2 border border-hidden rounded-lg mb-8 font-semibold bg-AccentBlue text-MainWhite transition ease-in-out duration-300 hover:bg-BgBlack/25 hover:text-BgBlack focus:outline-none focus:ring-4 focus:ring-AccentBlue focus:bg-[#1B8ACC]"
       >
-        buy tickets
+        {{ $t("tickets.buy") }}
       </button>
     </div>
   </form>
