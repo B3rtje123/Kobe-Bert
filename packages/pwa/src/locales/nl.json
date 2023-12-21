@@ -39,6 +39,9 @@
 
 "nav.explor":"Ontdek het park",
 "nav.attractions":"Atracties",
+"tickets.type": "soort",
+"tickets.buy": "Koop tickets",
+"general.date": "datum",
 
 "account.language.null":"Kies een taal",
 "account.language.title":"Taal",

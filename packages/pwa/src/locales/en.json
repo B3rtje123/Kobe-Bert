@@ -43,5 +43,8 @@
 "account.language.null":"Choose a language",
 "account.language.title":"Language",
 "account.language.english":"English",
-"account.language.dutch":"Dutch" 
+"account.language.dutch":"Dutch",
+"tickets.type": "type",
+"tickets.buy": "buy tickets",
+"general.date": "date"
 }}
