@@ -6,17 +6,13 @@
     <div
       class="rounded-lg max-w-sm shadow-[0_0_60px_-25px_rgba(0,0,0,0.3)] shadow-AccentBlue p-12 bg-MainWhite"
     >
-      <div
-        v-for="type in TypeResults.getAllTicketTypes"
-        :key="type.name"
-        class="mb-2"
-      >
+      <div v-for="type in newOrder.types" :key="type.name" class="mb-2">
         <input
           type="number"
-          v-model="type.name"
+          v-model="type.count"
           :id="type.name"
           placeholder="0"
-          class="mr-2 rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-20 transition-colors ease-in-out duration-300 hover:border-AccentBlue focus:outline-none focus:ring-4 focus:ring-AccentBlue"
+          class="mr-2 rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-20 transition-colors ease-in-out duration-300 hover:border-AccentBlue focus:outline-none focus:ring-4 focus:ring-AccentBlue appearance-none"
         />
         <label :for="type.name">{{ type.name.toLowerCase() }}</label>
       </div>
@@ -29,6 +25,19 @@
           id="email"
           placeholder="example@domain.com"
           v-model="newOrder.email"
+          required
+          autocomplete="off"
+          class="block rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-full transition-colors ease-in-out duration-300 hover:border-AccentBlue focus:outline-none focus:ring-4 focus:ring-AccentBlue"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="date" class="mb-4 font-medium">email</label>
+        <input
+          type="date"
+          name="date"
+          id="date"
+          v-model="newOrder.date"
           required
           autocomplete="off"
           class="block rounded-lg border-2 p-2 shadow-inner shadow-gray-400 w-full transition-colors ease-in-out duration-300 hover:border-AccentBlue focus:outline-none focus:ring-4 focus:ring-AccentBlue"
@@ -51,12 +60,45 @@ import { GET_ALL_TICKET_TYPES } from "@/graphql/ticketTypes.query"
 import { ref } from "vue"
 import { computed } from "vue"
 
-const newOrder = ref({ email: "" })
+//interfaces
+interface TicketType {
+  name: string
+  price: number
+  amount: number
+  id: string
+  count: number
+}
 
-const ticketTypes = useQuery(GET_ALL_TICKET_TYPES)
-const TypeResults = computed(() => ticketTypes.result.value)
+interface NewOrder {
+  email: string
+  date: Date | null
+  types?: TicketType[]
+}
+
+const {
+  result,
+  onResult,
+  loading: loadingTypes,
+} = useQuery(GET_ALL_TICKET_TYPES)
+const TypeResults = computed(() => result.value)
+
+const newOrder = ref<NewOrder>({ email: "", date: null, types: [] })
+
+onResult(() => {
+  console.log("result")
+  console.log(TypeResults.value.getAllTicketTypes)
+  TypeResults.value.getAllTicketTypes.forEach((ticketType: TicketType) => {
+    newOrder.value.types?.push({
+      name: ticketType.name,
+      price: ticketType.price,
+      amount: ticketType.amount,
+      id: ticketType.id,
+      count: 0,
+    })
+  })
+})
 
 const buytickets = () => {
-  console.log("buyticket")
+  console.log(newOrder.value)
 }
 </script>
