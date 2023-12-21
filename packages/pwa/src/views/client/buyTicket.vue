@@ -90,7 +90,11 @@ const {
 } = useQuery(GET_ALL_TICKET_TYPES)
 const TypeResults = computed(() => result.value)
 
-const newOrder = ref<NewOrder>({ email: "", date: null, types: [] })
+const newOrder = ref<NewOrder>({
+  email: firebaseUser.value?.email ? firebaseUser.value?.email : "",
+  date: null,
+  types: [],
+})
 
 onResult(() => {
   console.log(TypeResults.value.getAllTicketTypes)
