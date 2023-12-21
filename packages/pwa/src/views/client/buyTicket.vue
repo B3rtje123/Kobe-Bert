@@ -55,10 +55,16 @@
 </template>
 
 <script setup lang="ts">
-import { useQuery } from "@vue/apollo-composable"
+import { useQuery, useMutation } from "@vue/apollo-composable"
 import { GET_ALL_TICKET_TYPES } from "@/graphql/ticketTypes.query"
+import { ADD_TICKET } from "@/graphql/createTicket.mutation"
+import { GET_USER_BY_UID } from "@/graphql/user.query"
 import { ref } from "vue"
 import { computed } from "vue"
+import useFirebase from "@/composables/useFirebase"
+
+const { mutate: createTicket, onDone: created } = useMutation(ADD_TICKET)
+const { firebaseUser } = useFirebase()
 
 //interfaces
 interface TicketType {
@@ -100,5 +106,22 @@ onResult(() => {
 
 const buytickets = () => {
   console.log(newOrder.value)
+  newOrder.value.types?.forEach(type => {
+    for (let i = 0; i < type.count; i++) {
+      createTicket({
+        createTicketInput: {
+          typeId: type.id,
+          startDay: newOrder.value.date,
+          clientUid: firebaseUser.value ? firebaseUser.value.uid : null,
+        },
+      })
+        .catch(err => {
+          console.log(err)
+        })
+        .then(result => {
+          console.log(result)
+        })
+    }
+  })
 }
 </script>
