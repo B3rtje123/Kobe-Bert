@@ -59,12 +59,14 @@ import { useQuery, useMutation } from "@vue/apollo-composable"
 import { GET_ALL_TICKET_TYPES } from "@/graphql/ticketTypes.query"
 import { ADD_TICKET } from "@/graphql/createTicket.mutation"
 import { GET_USER_BY_UID } from "@/graphql/user.query"
+import { useRouter } from "vue-router"
 import { ref } from "vue"
 import { computed } from "vue"
 import useFirebase from "@/composables/useFirebase"
 
 const { mutate: createTicket, onDone: created } = useMutation(ADD_TICKET)
 const { firebaseUser } = useFirebase()
+const { replace } = useRouter()
 
 //interfaces
 interface TicketType {
@@ -91,7 +93,6 @@ const TypeResults = computed(() => result.value)
 const newOrder = ref<NewOrder>({ email: "", date: null, types: [] })
 
 onResult(() => {
-  console.log("result")
   console.log(TypeResults.value.getAllTicketTypes)
   TypeResults.value.getAllTicketTypes.forEach((ticketType: TicketType) => {
     newOrder.value.types?.push({
@@ -120,6 +121,8 @@ const buytickets = () => {
         })
         .then(result => {
           console.log(result)
+          // TODO: send email with QR-codes to client
+          replace("/ticket")
         })
     }
   })

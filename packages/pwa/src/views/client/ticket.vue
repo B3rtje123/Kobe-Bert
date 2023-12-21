@@ -10,7 +10,7 @@
 
   <!-- show tickets from user if logged in -->
   <div class="flex justify-center">
-    <table class="table-auto w-8/12" v-if="firebaseUser">
+    <table class="table-auto w-8/12" v-if="!ticketsLoading">
       <thead class="">
         <tr>
           <th class="pr-8 pl-2 pb-4 border-r">type</th>
@@ -19,7 +19,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in validTickets" class="odd:bg-black/15">
+        <tr
+          v-for="item in ticketsResult.getTicketsByUserId"
+          class="odd:bg-black/15"
+        >
           <!-- <div v-if="item.isUsed == false && new Date(item.endDay) > new Date()"> -->
           <td class="border-r p-2">{{ item.type.name }}</td>
           <td class="border-r p-2">
@@ -47,6 +50,7 @@ import { createApp } from "vue"
 import { useQuery } from "@vue/apollo-composable"
 import { computed } from "vue"
 import { useRouter } from "vue-router"
+import { watch } from "vue"
 
 const app = createApp({
   components: {
@@ -61,12 +65,31 @@ if (!firebaseUser.value) {
   replace("/ticket/buy")
 }
 
-const tickets = useQuery(GET_ALL_TICKETS_BY_UID)
-const ticketResult = computed(() => tickets.result.value)
-const validTickets = computed(() => {
-  return ticketResult.value.getTicketsByUserId.filter(
+const {
+  result: ticketsResult,
+  onResult,
+  loading: ticketsLoading,
+} = useQuery(GET_ALL_TICKETS_BY_UID)
+
+watch(ticketsResult, () => {
+  console.log(ticketsResult.value)
+  ticketsResult.value.getTicketsByUserId.filter(
     (item: any) => item.isUsed == false && new Date(item.endDay) > new Date(),
   )
 })
+
+// onResult(() => {
+//   console.log(ticketsResult.value)
+//   ticketsResult.value.getTicketsByUserId.filter(
+//     (item: any) => item.isUsed == false && new Date(item.endDay) > new Date(),
+//   )
+//   console.log(ticketsResult.value)
+// })
+
+// const validTickets = computed(() => {
+//   return ticketsResult.value.getTicketsByUserId.filter(
+//     (item: any) => item.isUsed == false && new Date(item.endDay) > new Date(),
+//   )
+// })
 // console.log(validTickets.value)
 </script>
