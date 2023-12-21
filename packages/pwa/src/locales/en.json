@@ -1,1 +1,47 @@
-{"en":{"Key":"en","navigation.home":"Home","navigation.birds":"Birds","navigation.observations":"Observations","navigation.user":"User","footer.disclaimer":"Disclaimer","birds.title.observation":"Observations","birds.description.spotted":"The bird hasn't been spotted yet. | The bird has been spotted once. | The bird has been spotted {n} times.","account.welcome":"Hi, {user}","account.stats":"Stats","account.realtime":"Realtime","account.settings":"Settings","account.log.out":"Log out"}}
+{"en":{"Key":"en",
+"account.name":"Name",
+"account.email":"Email",
+"account.phone.number":"Phone number",
+"account.log.out":"Sign out",
+"account.edit":"Edit",
+"account.save": "Save",
+"account.password":"Password",
+
+"account.work.days.title":"When do I work?",
+"account.work.days.workdays":"Work days",
+"account.work.days.start":"Start hour",
+"account.work.days.end":"end hour",
+
+"account.vacation.title":"When do I have vacation?",
+"account.vacation.begin":"Begin vacation",
+"account.vacation.end":"End vacation",
+
+"account.staff.title":"All staff",
+"account.staff.add":"Add",
+
+"account.staff.modal.title":"Add staffmember",
+"account.staff.modal.family.name":"Family name",
+"account.staff.modal.function":"Function",
+"account.staff.modal.bruto":"Bruto wage",
+"account.unsanctioned.acces":"Log in to see your account",
+
+
+"account.register.title":"Register",
+"account.register.subtitle":"Fill in the form below",
+"account.register.button":"Register",
+"account.register.strong.password":"your password is valid",
+"account.register.weak.password":"Must be at least 8 characters",
+"account.register.already.have":"Already have an account?",
+"account.or":"or",
+"account.register.continue.without.account":"Explore without an account",
+
+"account.login.signup":"No account yet?",
+
+"nav.explor":"Explore",
+"nav.attractions":"Rides",
+
+"account.language.null":"Choose a language",
+"account.language.title":"Language",
+"account.language.english":"English",
+"account.language.dutch":"Dutch" 
+}}

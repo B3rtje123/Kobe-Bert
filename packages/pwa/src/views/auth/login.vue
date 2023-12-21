@@ -5,14 +5,14 @@
 
       <div class="text-center m-8">
         <h1 class="text-3xl font-semibold">Log in</h1>
-        <h2 class="text-xs mt-1">Enter your account details below</h2>
+        <h2 class="text-xs mt-1">{{ $t('account.register.subtitle') }}</h2>
       </div>
 
       <p class="text-red-500 font-medium text-center">{{ tooMany ? 'You have tried too many times.\nTry again later!' : '' }}</p>
       <p class="text-red-500 font-medium text-center">{{ wrongLogin ? 'Email or password is wrong!' : '' }}</p>
 
       <div class="mb-6">
-        <label for="email" class="mb-4 font-medium">Email</label>
+        <label for="email" class="mb-4 font-medium">{{ $t('account.email') }}</label>
         <input 
             type="text"
             name="email"
@@ -30,9 +30,9 @@
       </div>
 
       <div class="mb-6">
-        <label for="password" class="mb-4 font-medium">Password</label>
+        <label for="password" class="mb-4 font-medium">{{ $t('account.password') }}</label>
         <input 
-          type="text"
+          type="password"
           name="password"
           id="password"
           v-model="loginCredentials.password"
@@ -57,19 +57,19 @@
       <div>
         <RouterLink to="/auth/register" class="font-normal text-sm 
         focus:outline-AccentBlue ">
-          <p class="p-1">Don't have an account yet? <span class="text-AccentBlue">Sign up</span></p>
+          <p class="p-1">{{ $t('account.login.signup') }} <span class="text-AccentBlue">{{ $t('account.register.title') }}</span></p>
         </RouterLink>
       </div>
 
       <div class="inline-flex items-center justify-center w-full">
         <hr class="w-full h-px translate-y-0.5 my-8 bg-BgBlack border-0">
-        <span class="absolute px-3 font-medium text-BgBlack -translate-x-1/2 bg-MainWhite left-1/2">or</span>
+        <span class="absolute px-3 font-medium text-BgBlack -translate-x-1/2 bg-MainWhite left-1/2">{{ $t('account.or') }}</span>
       </div>
 
       <RouterLink to="/" class="flex border border-BgBlack justify-center py-3 rounded-lg w-full
       hover:font-semibold 
       focus:outline-none focus:ring-4 focus:ring-AccentBlue focus:border-AccentBlue focus:font-medium">
-          <p>Continue without logging in</p>
+          <p>{{ $t('account.register.continue.without.account') }}</p>
       </RouterLink>
     </div>
   </form>
@@ -81,10 +81,12 @@
 
   import useFirebase from '@/composables/useFirebase'
   import { useRouter } from 'vue-router'
+import useCustomUser from '@/composables/useCustomUser'
 
   //composables
   const { login, firebaseUser } = useFirebase()
   const { replace } = useRouter()
+  const { restoreCustomUser } = useCustomUser()
 
   //logic
   const loginCredentials = ref({
@@ -105,8 +107,10 @@
     wrongLogin.value = false
     if(isValidEmail(loginCredentials.value.email) == true){
       login(loginCredentials.value.email, loginCredentials.value.password)
-      .then(() => {
-        replace('/')
+      .then( () => {
+        restoreCustomUser().then(() => {
+          replace('/')
+        })
       })
       .catch((err: AuthError) => {
         error.value = err

@@ -8,7 +8,7 @@ import { WorkHours } from "../../interfaces/workHours.interface"
 export class UpdateUserInput extends PartialType(CreateUserInput) {
   @IsNotEmpty()
   @Field(() => String)
-  id: string
+  uid: string
 
   @Field(() => String, {
     nullable: true,
@@ -19,6 +19,11 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {
     nullable: true,
   })
   name?: string
+  
+  @Field(() => String, {
+    nullable: true,
+  })
+  familyName?: string
 
   @Field(() => String, {
     nullable: true,

@@ -1,1 +1,48 @@
-{"nl":{"Key":"nl","navigation.home":"Home","navigation.birds":"Vogels","navigation.observations":"Observaties","navigation.user":"Gebruiker","footer.disclaimer":"Disclaimer","birds.title.observation":"Observaties","birds.description.spotted":"Deze vogel is nog niet gespot. | Deze vogel is een keer gepot. | Deze vogel is {n} keer gespot.","account.welcome":"Hallo, {user}","account.stats":"Statistieken","account.realtime":"Realtime","account.settings":"Instellingen","account.log.out":"Afmelden"}}
+{"nl":{"Key":"nl",
+"account.name":"Naam",
+"account.email":"E-mail",
+"account.phone.number":"Telefoonnummer",
+"account.log.out":"Afmelden",
+"account.edit":"Pas aan",
+"account.save": "Opslaan",
+"account.password":"Wachtwoord",
+
+"account.work.days.title":"Wanneer werk ik?",
+"account.work.days.workdays":"Werkdagen",
+"account.work.days.start":"Start uur",
+"account.work.days.end":"Eind uur",
+
+"account.vacation.title":"Wanneer heb ik mijn vakantiedagen?",
+"account.vacation.begin":"Begin vakantie",
+"account.vacation.end":"Einde vakantie",
+
+"account.staff.title":"Alle medewerkers",
+"account.staff.add":"Voeg toe",
+
+"account.staff.modal.title":"Voeg een medewerker toe",
+"account.staff.modal.family.name":"Familienaam",
+"account.staff.modal.function":"Functie",
+"account.staff.modal.bruto":"Bruto loon",
+"account.unsanctioned.acces":"Log in om een account te zien",
+
+
+"account.register.title":"Registreer",
+"account.register.subtitle":"Geef de gevraagd gegevens in.",
+"account.register.button":"Registreren",
+"account.register.strong.password":"Je wachtwoord bevat 8 tekens",
+"account.register.weak.password":"Moet minstens 8 tekens bevatten!",
+"account.register.already.have":"Al een account?",
+"account.or":"of",
+"account.register.continue.without.account":"Ga verder zonder account",
+
+"account.login.signup":"Nog geen account?",
+
+"nav.explor":"Ontdek het park",
+"nav.attractions":"Atracties",
+
+"account.language.null":"Kies een taal",
+"account.language.title":"Taal",
+"account.language.english":"Engels",
+"account.language.dutch":"Nederlands" 
+
+}}

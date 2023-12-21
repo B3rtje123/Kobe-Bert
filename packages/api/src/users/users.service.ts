@@ -2,14 +2,14 @@ import { Injectable } from "@nestjs/common"
 import { CreateUserInput } from "./dto/create-user.input"
 import { UpdateUserInput } from "./dto/update-user.input"
 import { InjectRepository } from "@nestjs/typeorm"
-import { Repository } from "typeorm"
+import { MongoRepository, Repository } from "typeorm"
 import { Role, User } from "./entities/user.entity"
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private readonly userRepository: MongoRepository<User>,
   ) {}
 
   create(uid: string, email: string, createUserInput: CreateUserInput) {
@@ -44,38 +44,44 @@ export class UsersService {
   // }
 
   findAllStaff(){
-    return this.userRepository.find({where: {role: Role.STAFF}})
+    return this.userRepository.find({
+      where: {
+        $or: [{role: Role.STAFF}, {role: Role.ADMIN}]
+        
+      } 
+    })
   }
 
   findOneByUid(id: string) {
     return this.userRepository.findOneByOrFail({ uid: id })
   }
 
-  update(id: string, updateUserInput: UpdateUserInput) {
-    let user = new User()
+  async update(uid: string, updateUserInput: UpdateUserInput) {
+    const user = await this.findOneByUid(uid)
 
-    // //get user
-    // const user = this.findOneByUid(uid).then(u => {
-    //   if (!u) {
-    //     throw new Error("User not found")
-    //   }
-    // }).finally(() => {
-    //   return u
-    // })
-
-    console.log(updateUserInput)
-    console.log(id)
+    const userUpdate = new User()
 
     //update user
-    user.uid = id
-    user.name = updateUserInput.name ?? user.name
-    // user.email = updateUserInput.email ?? user.email
-    user.role = updateUserInput.role ?? user.role
-    user.locale = updateUserInput.locale ?? user.locale
-    user.fullname = updateUserInput.fullname ?? user.fullname
-    user.phoneNumber = updateUserInput.phoneNumber ?? user.phoneNumber
+    userUpdate.email = updateUserInput.email ?? user.email
+    userUpdate.fullname = updateUserInput.fullname ?? user.fullname
+    userUpdate.name = updateUserInput.name ?? user.name
+    userUpdate.phoneNumber = updateUserInput.phoneNumber ?? user.phoneNumber
+    
+    userUpdate.role = user.role
+    userUpdate.uid = user.uid
+    userUpdate.id = user.id
+    userUpdate.createdAt = user.createdAt
+
+    userUpdate.brutoMonthlyWage = user.brutoMonthlyWage
+    userUpdate.isChief = user.isChief
+    userUpdate.job = user.job
+    
+    userUpdate.locale = updateUserInput.locale ?? user.locale
+    userUpdate.updatedAt = new Date()
+    userUpdate.workLocationId = user.workLocationId
 
     console.log(user)
+    
     //only for admin and staff
     if (user.role === Role.ADMIN || user.role === Role.STAFF) {
       user.brutoMonthlyWage =
@@ -84,7 +90,7 @@ export class UsersService {
     }
 
     console.log(user)
-    return this.userRepository.update(user.id, user)
+    return this.userRepository.save(userUpdate)
   }
 
   remove(id: string) {

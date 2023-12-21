@@ -31,6 +31,11 @@
     "endOfLine": "lf"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.0",
+    "@fortawesome/free-brands-svg-icons": "^6.5.0",
+    "@fortawesome/free-regular-svg-icons": "^6.5.0",
+    "@fortawesome/free-solid-svg-icons": "^6.5.0",
+    "@fortawesome/vue-fontawesome": "^3.0.5",
     "@unocss/preset-uno": "^0.57.1",
     "axios": "^1.6.0",
     "proxy-agent": "^6.3.1"

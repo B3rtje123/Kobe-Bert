@@ -10,6 +10,10 @@ export class CreateUserInput {
   name: string
 
   @IsNotEmpty()
+  @Field(() => String, {description: "Familyname of the user"})
+  familyName: string
+
+  @IsNotEmpty()
   @Field(() => String, { description: "email of the current user" })
   email: string
 

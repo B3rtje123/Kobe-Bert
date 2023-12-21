@@ -24,7 +24,7 @@
         lg:flex lg:items-center lg:px-0 lg:pb-0 lg:static lg:w-auto lg:min-h-full lg:text-lg"
         :class="[showMobileMenu ? 'left-0 ' : 'left-[-100%]']">
 
-            <RouterLink v-for="link in links" :to="link.link" 
+            <RouterLink v-for="link in links" :to="link.link" @click="showMobileMenu = !showMobileMenu"
             class="relative group 
             hover:text-sky-600
             focus:outline-none focus:text-sky-600
@@ -76,6 +76,7 @@
             
             const AccButton = () => {
                 firebaseUser.value != null ? replace('/profile') : replace('/auth/login')
+                showMobileMenu.value = !showMobileMenu
             }
 
             return{
