@@ -21,6 +21,7 @@ const restoreCustomUser = async () => {
       if (result.data) {
         console.log(result)
         customUser.value = result.data.userByUid
+        console.log(customUser)
         resolve()
       }
     })

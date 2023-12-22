@@ -9,7 +9,7 @@ export const DEFAULT_LOCALE = "nl"
 
 export const i18nOptions: I18nOptions = {
   locale: DEFAULT_LOCALE,
-  fallbackLocale: DEFAULT_LOCALE,
+  fallbackLocale: 'en',
   legacy: false,
 }
 

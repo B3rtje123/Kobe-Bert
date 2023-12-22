@@ -1,13 +1,51 @@
-{
-    "nl": {
-        "Key": "nl",
-        "account.welcome": "Hallo, {user}",
-        "account.stats": "Statistieken",
-        "account.realtime": "Realtime",
-        "account.settings": "Instellingen",
-        "account.log.out": "Afmelden",
-        "tickets.type": "soort",
-        "tickets.buy": "Koop tickets",
-        "general.date": "datum"
-    }
-}
+{"nl":{"Key":"nl",
+"account.name":"Naam",
+"account.email":"E-mail",
+"account.phone.number":"Telefoonnummer",
+"account.log.out":"Afmelden",
+"account.edit":"Pas aan",
+"account.save": "Opslaan",
+"account.password":"Wachtwoord",
+
+"account.work.days.title":"Wanneer werk ik?",
+"account.work.days.workdays":"Werkdagen",
+"account.work.days.start":"Start uur",
+"account.work.days.end":"Eind uur",
+
+"account.vacation.title":"Wanneer heb ik mijn vakantiedagen?",
+"account.vacation.begin":"Begin vakantie",
+"account.vacation.end":"Einde vakantie",
+
+"account.staff.title":"Alle medewerkers",
+"account.staff.add":"Voeg toe",
+
+"account.staff.modal.title":"Voeg een medewerker toe",
+"account.staff.modal.family.name":"Familienaam",
+"account.staff.modal.function":"Functie",
+"account.staff.modal.bruto":"Bruto loon",
+"account.unsanctioned.acces":"Log in om een account te zien",
+
+
+"account.register.title":"Registreer",
+"account.register.subtitle":"Geef de gevraagd gegevens in.",
+"account.register.button":"Registreren",
+"account.register.strong.password":"Je wachtwoord bevat 8 tekens",
+"account.register.weak.password":"Moet minstens 8 tekens bevatten!",
+"account.register.already.have":"Al een account?",
+"account.or":"of",
+"account.register.continue.without.account":"Ga verder zonder account",
+
+"account.login.signup":"Nog geen account?",
+
+"nav.explor":"Ontdek het park",
+"nav.attractions":"Atracties",
+"tickets.type": "soort",
+"tickets.buy": "Koop tickets",
+"general.date": "datum",
+
+"account.language.null":"Kies een taal",
+"account.language.title":"Taal",
+"account.language.english":"Engels",
+"account.language.dutch":"Nederlands" 
+
+}}

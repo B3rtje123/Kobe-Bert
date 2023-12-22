@@ -3,12 +3,12 @@
     class="flex mt-16 justify-center items-center text-BgBlack">
         <div class="rounded-lg max-w-sm shadow-[0_0_60px_-25px_rgba(0,0,0,0.3)] shadow-AccentBlue p-12 bg-MainWhite">
             <div class="text-center m-8">
-                <h1 class="text-3xl font-semibold">Sign up</h1>
-                <h2 class="text-xs mt-1">Enter your account details below</h2>
+                <h1 class="text-3xl font-semibold">{{ $t('account.register.title') }}</h1>
+                <h2 class="text-xs mt-1">{{ $t('account.register.subtitle') }}</h2>
             </div>
 
             <div class="mb-6">
-                <label for="nickname" class="mb-4 font-medium">Username</label>
+                <label for="nickname" class="mb-4 font-medium">{{ $t('account.name') }}</label>
                 <input 
                     type="text"
                     name="nickname"
@@ -24,7 +24,7 @@
             </div>
 
             <div class="mb-6">
-                <label for="email" class="mb-4 font-medium">Email<span :class="{'animate-pulse text-red-500 font-semibold' : !isValidEmail(newUser.email), 'text-BgBlack font-normal animate-none' : isValidEmail(newUser.email)}">*</span></label>
+                <label for="email" class="mb-4 font-medium">{{ $t('account.email') }}<span :class="{'animate-pulse text-red-500 font-semibold' : !isValidEmail(newUser.email), 'text-BgBlack font-normal animate-none' : isValidEmail(newUser.email)}">*</span></label>
                 <input 
                     type="text"
                     name="email"
@@ -42,9 +42,9 @@
             </div>
 
             <div class="mb-6">
-                <label for="password" class="mb-4 font-medium">Password<span :class="{'animate-pulse text-red-500 font-semibold' : !passwordLength(newUser.password), 'text-BgBlack font-normal animate-none' : passwordLength(newUser.password)}">*</span></label>
+                <label for="password" class="mb-4 font-medium">{{ $t('account.password') }}<span :class="{'animate-pulse text-red-500 font-semibold' : !passwordLength(newUser.password), 'text-BgBlack font-normal animate-none' : passwordLength(newUser.password)}">*</span></label>
                 <input 
-                    type="text"
+                    type="password"
                     name="password"
                     id="password"
                     v-model="newUser.password"
@@ -72,25 +72,25 @@
                     type="submit"
                     class="w-full py-2 rounded-lg mb-8 font-semibold bg-AccentBlue text-MainWhite"
                 >
-                    Sign up
+                    {{ $t('account.register.button') }}
                 </button>
             </div>
 
             <div>
                 <RouterLink to="/auth/login" class="font-normal text-sm">
-                    <p>Do you have an account? <span class="text-AccentBlue">Log in</span></p>
+                    <p>{{ $t('account.register.already.have') }} <span class="text-AccentBlue">Log in</span></p>
                 </RouterLink>
             </div>
             
             <div class="inline-flex items-center justify-center w-full">
                 <hr class="w-full h-px translate-y-0.5 my-8 bg-BgBlack border-0">
-                <span class="absolute px-3 font-medium text-BgBlack -translate-x-1/2 bg-MainWhite left-1/2">or</span>
+                <span class="absolute px-3 font-medium text-BgBlack -translate-x-1/2 bg-MainWhite left-1/2">{{ $t('account.or') }}</span>
             </div>
 
             <div class="flex justify-center items-center">
                 <button class="border border-BgBlack px-6 py-3 rounded-lg">
                     <RouterLink to="/" class="">
-                        <p>Continue without logging in</p>
+                        <p>{{ $t('account.register.continue.without.account') }}</p>
                     </RouterLink>
                 </button>
             </div>
